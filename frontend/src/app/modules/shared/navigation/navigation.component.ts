@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RoleService} from "../../../services/role.service";
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private roleService: RoleService) { }
 
   ngOnInit() {
   }
 
+  getAllRoles() {
+    this.roleService.getAllRoles().subscribe(value => {
+      console.log(value);
+    })
+  }
 }

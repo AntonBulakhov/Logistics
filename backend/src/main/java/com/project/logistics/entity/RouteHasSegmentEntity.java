@@ -8,8 +8,6 @@ import javax.persistence.*;
 public class RouteHasSegmentEntity {
     private int routeId;
     private int segmentId;
-    private RouteEntity route;
-    private SegmentEntity segment;
 
     @Id
     @Column(name = "route_id")
@@ -49,25 +47,5 @@ public class RouteHasSegmentEntity {
         int result = routeId;
         result = 31 * result + segmentId;
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "route_id", referencedColumnName = "id", nullable = false)
-    public RouteEntity getRoute() {
-        return route;
-    }
-
-    public void setRoute(RouteEntity route) {
-        this.route = route;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "segment_id", referencedColumnName = "id", nullable = false)
-    public SegmentEntity getSegment() {
-        return segment;
-    }
-
-    public void setSegment(SegmentEntity segment) {
-        this.segment = segment;
     }
 }
