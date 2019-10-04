@@ -4,19 +4,23 @@ import { HomeComponent } from './home/home.component';
 import {SharedModule} from "../shared/shared.module";
 import {BrowserModule} from "@angular/platform-browser";
 import {RouterModule} from "@angular/router";
+import { OrderformComponent } from './orderform/orderform.component';
+import {FormsModule} from "@angular/forms";
 
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, OrderformComponent],
   imports: [
     CommonModule,
     SharedModule,
     BrowserModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
-    HomeComponent
+    HomeComponent,
+    OrderformComponent
   ]
 })
 export class PagesModule { }
