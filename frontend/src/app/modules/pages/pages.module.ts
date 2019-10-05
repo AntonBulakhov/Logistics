@@ -6,11 +6,12 @@ import {BrowserModule} from "@angular/platform-browser";
 import {RouterModule} from "@angular/router";
 import { OrderformComponent } from './orderform/orderform.component';
 import {FormsModule} from "@angular/forms";
+import { ProfileComponent } from './profile/profile.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, OrderformComponent],
+  declarations: [HomeComponent, OrderformComponent, ProfileComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -20,7 +21,8 @@ import {FormsModule} from "@angular/forms";
   ],
   exports: [
     HomeComponent,
-    OrderformComponent
+    OrderformComponent,
+    ProfileComponent
   ]
 })
 export class PagesModule { }

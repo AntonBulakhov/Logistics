@@ -4,6 +4,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import {RouterModule} from "@angular/router";
 import {RoleService} from "../../services/role.service";
+import {ProfileComponent} from "../pages/profile/profile.component";
 
 
 
