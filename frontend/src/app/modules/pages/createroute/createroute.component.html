@@ -1,0 +1,104 @@
+<app-navigation></app-navigation>
+<form class="form-margin-top-bottom bg-light">
+  <div class="form-row ">
+    <div class="form-group col-md-2 offset-md-3">
+      <p>Создать точку маршрута</p>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputNamepoint">Название точки</label>
+      <input type="text" class="form-control" id="inputNamepoint" placeholder="Название">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2 offset-md-3" >
+      <button type="submit" class="btn btn-primary" >Создать</button>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2 offset-md-3">
+      <p>Создать отрезок</p>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputFirstpoint">Начальная точнка</label>
+      <select id="inputFirstpoint" class="form-control">
+        <option selected>Выберите...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputSecondpoint">Конечная точка</label>
+      <select id="inputSecondpoint" class="form-control">
+        <option selected>Выберите...</option>
+        <option>...</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row ">
+    <div class="form-group col-md-2 offset-md-3">
+      <label for="inputDistance">Растояние</label>
+      <input type="text" class="form-control" id="inputDistance" placeholder="Растояние">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputNamesegment">Название отрезка</label>
+      <input type="text" class="form-control" id="inputNamesegment" placeholder="Название">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputVihicletype">Тип транспорта</label>
+      <select id="inputVihicletype" class="form-control">
+        <option selected>Выберите...</option>
+        <option>...</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2 offset-md-3" >
+      <button type="submit" class="btn btn-primary" >Создать</button>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2 offset-md-3">
+      <p>Создание маршрута</p>
+    </div>
+    <div class="form-group col-mb-2">
+      <label for="inputSegmentnumber">Количество отрезков</label>
+      <input type="text" id="inputSegmentnumber" class="form-control" placeholder="Количество отрезков">
+    </div>
+    <div class="form-group col-md-1">
+      <label for="inputSegment1">Отрезок 1</label>
+      <select id="inputSegment1" class="form-control">
+        <option selected>Выберите...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-1">
+      <label for="inputSegment2">Отрезок 2</label>
+      <select id="inputSegment2" class="form-control">
+        <option selected>Выберите...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-1">
+      <label for="inputSegment3">Отрезок 3</label>
+      <select id="inputSegment3" class="form-control">
+        <option selected>Выберите...</option>
+        <option>...</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2 offset-md-3" >
+      <button type="submit" class="btn btn-primary" >Создать</button>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6 offset-md-3">
+      <hr>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="from-group col-md-3 offset-md-3">
+      <button type="submit" class="btn btn-primary col-8">Продолжить</button>
+    </div>
+  </div>
+</form>
+<app-footer></app-footer>

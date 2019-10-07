@@ -8,11 +8,12 @@ import { OrderformComponent } from './orderform/orderform.component';
 import {FormsModule} from "@angular/forms";
 import { ProfileComponent } from './profile/profile.component';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { CreaterouteComponent } from './createroute/createroute.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, OrderformComponent, ProfileComponent, ConfirmComponent],
+  declarations: [HomeComponent, OrderformComponent, ProfileComponent, ConfirmComponent, CreaterouteComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -24,7 +25,8 @@ import { ConfirmComponent } from './confirm/confirm.component';
     HomeComponent,
     OrderformComponent,
     ProfileComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    CreaterouteComponent
   ]
 })
 export class PagesModule { }
