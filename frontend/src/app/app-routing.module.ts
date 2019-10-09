@@ -5,6 +5,8 @@ import {OrderformComponent} from "./modules/pages/orderform/orderform.component"
 import {ProfileComponent} from "./modules/pages/profile/profile.component";
 import {ConfirmComponent} from "./modules/pages/confirm/confirm.component";
 import {CreaterouteComponent} from "./modules/pages/createroute/createroute.component";
+import {TablesComponent} from "./modules/pages/tables/tables.component";
+import {RegistrationComponent} from "./modules/pages/registration/registration.component";
 
 
 const routes: Routes = [
@@ -12,7 +14,9 @@ const routes: Routes = [
   {path: 'orderform', component: OrderformComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'confirm', component: ConfirmComponent},
-  {path: 'createroute', component: CreaterouteComponent}
+  {path: 'createroute', component: CreaterouteComponent},
+  {path: 'tables', component: TablesComponent},
+  {path: 'registration', component: RegistrationComponent}
 ];
 
 @NgModule({

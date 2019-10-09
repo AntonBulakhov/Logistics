@@ -9,11 +9,13 @@ import {FormsModule} from "@angular/forms";
 import { ProfileComponent } from './profile/profile.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { CreaterouteComponent } from './createroute/createroute.component';
+import { TablesComponent } from './tables/tables.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, OrderformComponent, ProfileComponent, ConfirmComponent, CreaterouteComponent],
+  declarations: [HomeComponent, OrderformComponent, ProfileComponent, ConfirmComponent, CreaterouteComponent, TablesComponent, RegistrationComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -26,7 +28,9 @@ import { CreaterouteComponent } from './createroute/createroute.component';
     OrderformComponent,
     ProfileComponent,
     ConfirmComponent,
-    CreaterouteComponent
+    CreaterouteComponent,
+    TablesComponent,
+    RegistrationComponent
   ]
 })
 export class PagesModule { }
