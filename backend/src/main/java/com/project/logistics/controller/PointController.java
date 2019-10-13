@@ -15,7 +15,7 @@ public class PointController {
 
     @PostMapping
     public ResponseEntity<Boolean> createPoint(@RequestBody PointEntity pointEntity) {
-        Boolean created = pointService.createPoint(pointEntity) == null;
+        Boolean created = pointService.createPoint(pointEntity) != null;
         return ResponseEntity.ok(created);
     }
 

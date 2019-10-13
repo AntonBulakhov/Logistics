@@ -28,10 +28,15 @@ export class CreaterouteComponent implements OnInit {
 
   createPoint() {
     this.pointNameSubmitted = true;
-
     if (!this.form.invalid) {
-      this.pointService.createPoint(this.point).subscribe(value => {
+      this.pointService.getPointByName(this.point.name).subscribe(value => {
+        if (value == null) {
+          this.pointService.createPoint(this.point).subscribe(value => {
 
+          });
+        } else {
+        //  добавить сообщение что такая точка существует
+        }
       });
     }
   }
