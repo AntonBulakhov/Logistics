@@ -3,18 +3,20 @@ package com.project.logistics.controller;
 import com.project.logistics.entity.PointEntity;
 import com.project.logistics.service.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/point")
+@RequestMapping("/api/point")
 public class PointController {
     private PointService pointService;
 
     @PostMapping
-    public void createPoint(@RequestBody PointEntity pointEntity) {
-        pointService.createPoint(pointEntity);
+    public ResponseEntity<Boolean> createPoint(@RequestBody PointEntity pointEntity) {
+        Boolean created = pointService.createPoint(pointEntity) == null;
+        return ResponseEntity.ok(created);
     }
 
     @GetMapping("/id/{id}")

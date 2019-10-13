@@ -18,6 +18,8 @@ export class CreaterouteComponent implements OnInit {
   }
 
   createPoint() {
-    this.pointService.createPoint(this.point);
+    this.pointService.createPoint(this.point).subscribe(value => {
+      console.log(value);
+    });
   }
 }

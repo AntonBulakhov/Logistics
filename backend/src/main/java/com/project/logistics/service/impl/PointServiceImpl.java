@@ -14,8 +14,8 @@ public class PointServiceImpl implements PointService {
     private PointRepository pointRepository;
 
     @Override
-    public void createPoint(PointEntity pointEntity) {
-        pointRepository.save(pointEntity);
+    public PointEntity createPoint(PointEntity pointEntity) {
+        return pointRepository.save(pointEntity);
     }
 
     @Override
