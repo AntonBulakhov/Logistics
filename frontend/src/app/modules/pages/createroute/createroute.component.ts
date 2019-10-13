@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PointModel} from "../../../models/point.model";
+import {PointService} from "../../../services/point.service";
 
 @Component({
   selector: 'app-createroute',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreaterouteComponent implements OnInit {
 
-  constructor() { }
+  public point: PointModel = new PointModel();
+
+  constructor(private pointService: PointService) {
+  }
 
   ngOnInit() {
   }
 
+  createPoint() {
+    this.pointService.createPoint(this.point);
+  }
 }
