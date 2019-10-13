@@ -3,9 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {RoleModel} from "../models/role.model";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RoleService {
 
   constructor(private http: HttpClient) { }

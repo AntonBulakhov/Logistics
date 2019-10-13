@@ -11,11 +11,20 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { CreaterouteComponent } from './createroute/createroute.component';
 import { TablesComponent } from './tables/tables.component';
 import { RegistrationComponent } from './registration/registration.component';
+import {PointService} from "../../services/point.service";
+import {RoleService} from "../../services/role.service";
 
 
 
 @NgModule({
-  declarations: [HomeComponent, OrderformComponent, ProfileComponent, ConfirmComponent, CreaterouteComponent, TablesComponent, RegistrationComponent],
+  declarations: [
+    HomeComponent,
+    OrderformComponent,
+    ProfileComponent,
+    ConfirmComponent,
+    CreaterouteComponent,
+    TablesComponent,
+    RegistrationComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -31,6 +40,10 @@ import { RegistrationComponent } from './registration/registration.component';
     CreaterouteComponent,
     TablesComponent,
     RegistrationComponent
+  ],
+  providers: [
+    PointService,
+    RoleService
   ]
 })
 export class PagesModule { }

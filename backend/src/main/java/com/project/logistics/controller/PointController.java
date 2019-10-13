@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/point")
+@RequestMapping("/point")
 public class PointController {
     private PointService pointService;
 
-    @PostMapping()
+    @PostMapping
     public void createPoint(@RequestBody PointEntity pointEntity) {
         pointService.createPoint(pointEntity);
     }
