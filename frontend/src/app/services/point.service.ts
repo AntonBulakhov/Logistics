@@ -10,6 +10,6 @@ export class PointService {
   constructor(private http: HttpClient) { }
 
   createPoint(point: PointModel) {
-    this.http.put("/api/point", point);
+    this.http.post("/api/point", point);
   }
 }
