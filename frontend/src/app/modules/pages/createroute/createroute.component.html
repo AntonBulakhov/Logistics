@@ -1,12 +1,14 @@
 <app-navigation></app-navigation>
-<form class="form-margin-top-bottom bg-light">
+<form class="form-margin-top-bottom bg-light" [formGroup]="form">
   <div class="form-row ">
     <div class="form-group col-md-2 offset-md-3">
       <p>Создать точку маршрута</p>
     </div>
     <div class="form-group col-md-2">
       <label for="inputNamepoint">Название точки</label>
-      <input type="text" class="form-control" id="inputNamepoint" placeholder="Название" name="pointName"  [(ngModel)]="point.name">
+      <input type="text" class="form-control" id="inputNamepoint" placeholder="Название" name="pointName"  [(ngModel)]="point.name"
+             formControlName="pointName"  [ngClass]="{ 'is-invalid': pointNameSubmitted && f.pointName.errors }"
+             autocomplete="off">
     </div>
   </div>
   <div class="form-row">

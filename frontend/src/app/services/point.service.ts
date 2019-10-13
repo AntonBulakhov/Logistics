@@ -12,4 +12,8 @@ export class PointService {
   createPoint(point: PointModel): Observable<PointModel> {
     return this.http.post<PointModel>("/api/point", point);
   }
+
+  getPointByName(pointName: string): Observable<PointModel> {
+    return this.http.get<PointModel>("/api/point/name/" + pointName);
+  }
 }

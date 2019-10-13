@@ -5,7 +5,7 @@ import {SharedModule} from "../shared/shared.module";
 import {BrowserModule} from "@angular/platform-browser";
 import {RouterModule} from "@angular/router";
 import { OrderformComponent } from './orderform/orderform.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProfileComponent } from './profile/profile.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { CreaterouteComponent } from './createroute/createroute.component';
@@ -30,7 +30,8 @@ import {RoleService} from "../../services/role.service";
     SharedModule,
     BrowserModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     HomeComponent,
