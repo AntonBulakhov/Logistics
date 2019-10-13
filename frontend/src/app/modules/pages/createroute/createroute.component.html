@@ -1,21 +1,27 @@
 <app-navigation></app-navigation>
-<div class="form-margin-top-bottom bg-light">
-  <form (ngSubmit)="createPoint()">
-    <div class="form-row ">
-      <div class="form-group col-md-2 offset-md-3">
-        <p>Создать точку маршрута</p>
-      </div>
-      <div class="form-group col-md-2">
-        <label for="inputNamepoint">Название точки</label>
-        <input type="text" class="form-control" id="inputNamepoint" placeholder="Название" name="pointName"  [(ngModel)]="point.name">
-      </div>
+<form class="form-margin-top-bottom bg-light">
+  <div class="form-row ">
+    <div class="form-group col-md-2 offset-md-3">
+      <p>Создать точку маршрута</p>
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-2 offset-md-3" >
-        <button type="submit" class="btn btn-primary">Создать</button>
-      </div>
+    <div class="form-group col-md-2">
+      <label for="inputNamepoint">Название точки</label>
+      <input type="text" class="form-control" id="inputNamepoint" placeholder="Название" name="pointName"  [(ngModel)]="point.name">
     </div>
-  </form>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2 offset-md-3" >
+      <button type="submit" class="btn btn-primary" (click)="createPoint()">Создать</button>
+    </div>
+  </div>
+
+  <!--  gray divider-->
+  <div class="form-row">
+    <div class="form-group col-md-6 offset-md-3">
+      <hr>
+    </div>
+  </div>
+
   <div class="form-row">
     <div class="form-group col-md-2 offset-md-3">
       <p>Создать отрезок</p>
@@ -57,6 +63,14 @@
       <button type="submit" class="btn btn-primary" >Создать</button>
     </div>
   </div>
+
+  <!--  gray divider-->
+  <div class="form-row">
+    <div class="form-group col-md-6 offset-md-3">
+      <hr>
+    </div>
+  </div>
+
   <div class="form-row">
     <div class="form-group col-md-2 offset-md-3">
       <p>Создание маршрута</p>
@@ -92,15 +106,6 @@
       <button type="submit" class="btn btn-primary" >Создать</button>
     </div>
   </div>
-  <div class="form-row">
-    <div class="form-group col-md-6 offset-md-3">
-      <hr>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="from-group col-md-3 offset-md-3">
-      <button type="submit" class="btn btn-primary col-8">Продолжить</button>
-    </div>
-  </div>
-</div>
+
+</form>
 <app-footer></app-footer>
