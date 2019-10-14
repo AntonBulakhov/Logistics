@@ -7,8 +7,9 @@
     <div class="form-group col-md-2">
       <label for="inputNamepoint">Название точки</label>
       <input type="text" class="form-control" id="inputNamepoint" placeholder="Название" name="pointName"  [(ngModel)]="point.name"
-             formControlName="pointName"  [ngClass]="{ 'is-invalid': pointNameSubmitted && f.pointName.errors }"
+             formControlName="pointName"  [ngClass]="{ 'is-invalid': pointNameSubmitted && f.pointName.errors || pointExists}"
              autocomplete="off">
+      <div *ngIf="pointExists && pointNameSubmitted" class="text-danger">Такая точка уже существует</div>
     </div>
   </div>
   <div class="form-row">
