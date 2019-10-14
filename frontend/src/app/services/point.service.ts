@@ -16,4 +16,10 @@ export class PointService {
   getPointByName(pointName: string): Observable<PointModel> {
     return this.http.get<PointModel>("/api/point/name/" + pointName);
   }
+
+  getAllPoints(): Observable<PointModel[]>{
+    return this.http.get<PointModel[]>("/api/points/all")
+  }
+
+
 }

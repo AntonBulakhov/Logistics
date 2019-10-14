@@ -11,6 +11,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class CreaterouteComponent implements OnInit {
 
   public point: PointModel = new PointModel();
+  public points: PointModel[];
   public form: FormGroup;
   public pointNameSubmitted: boolean;
 
@@ -22,6 +23,13 @@ export class CreaterouteComponent implements OnInit {
     this.form = this.formBuilder.group({
       pointName: [null, Validators.required]
     });
+    this.loadData();
+  }
+
+  private loadData(): void{
+    this.pointService.getAllPoints().subscribe(data=>{
+      this.points = data as PointModel[];
+      })
   }
 
   get f() { return this.form.controls; }
