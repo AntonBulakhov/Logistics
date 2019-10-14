@@ -14,6 +14,7 @@ export class CreaterouteComponent implements OnInit {
   public points: PointModel[];
   public form: FormGroup;
   public pointNameSubmitted: boolean;
+  public pointExists: boolean = false;
 
   constructor(private pointService: PointService,
               private formBuilder: FormBuilder) {
@@ -40,10 +41,10 @@ export class CreaterouteComponent implements OnInit {
       this.pointService.getPointByName(this.point.name).subscribe(value => {
         if (value == null) {
           this.pointService.createPoint(this.point).subscribe(value => {
-
+            this.pointExists = false;
           });
         } else {
-        //  добавить сообщение что такая точка существует
+          this.pointExists = true;
         }
       });
     }
