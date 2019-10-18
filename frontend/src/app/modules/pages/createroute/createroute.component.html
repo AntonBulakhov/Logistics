@@ -49,9 +49,9 @@
     </div>
     <div class="form-group col-md-2">
       <label for="inputVihicletype">Тип транспорта</label>
-      <select id="inputVihicletype" class="form-control">
-        <option selected>Выберите...</option>
-        <option>...</option>
+      <select id="inputVihicletype" class="form-control" name="transports">
+        <option *ngFor="let transport of transports">{{transport.transportType.name.charAt(0).toUpperCase()+
+          transport.transportType.name.slice(1)}}</option>
       </select>
     </div>
   </div>
