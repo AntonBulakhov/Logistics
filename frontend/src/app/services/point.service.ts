@@ -18,7 +18,7 @@ export class PointService {
   }
 
   getAllPoints(): Observable<PointModel[]>{
-    return this.http.get<PointModel[]>("/api/points/all")
+    return this.http.get<PointModel[]>("/api/point/all")
   }
 
 

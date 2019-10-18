@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class PointServiceImpl implements PointService {
-    @Autowired
+
     private PointRepository pointRepository;
 
     @Override
@@ -31,5 +31,15 @@ public class PointServiceImpl implements PointService {
     @Override
     public List<PointEntity> getLeftPoints(List<Integer> ids) {
         return pointRepository.getPointEntitiesByIdNotIn(ids);
+    }
+
+    @Override
+    public List<PointEntity> getAllPoints() {
+        return (List<PointEntity>) pointRepository.findAll();
+    }
+
+    @Autowired
+    public void setPointRepository(PointRepository pointRepository) {
+        this.pointRepository = pointRepository;
     }
 }

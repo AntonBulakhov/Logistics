@@ -24,6 +24,11 @@ public class PointController {
         return pointService.getPointById(id);
     }
 
+    @GetMapping("/all")
+    public List<PointEntity> getAllPoints() {
+        return pointService.getAllPoints();
+    }
+
     @GetMapping("/name/{name}")
     public PointEntity getPointByName(@PathVariable String name) {
         return pointService.getPointByName(name);

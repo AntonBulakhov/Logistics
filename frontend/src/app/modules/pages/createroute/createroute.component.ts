@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PointModel} from "../../../models/point.model";
 import {PointService} from "../../../services/point.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SegmentModel} from "../../../models/segment.model";
 
 @Component({
   selector: 'app-createroute',
@@ -12,41 +12,42 @@ export class CreaterouteComponent implements OnInit {
 
   public point: PointModel = new PointModel();
   public points: PointModel[];
-  public form: FormGroup;
   public pointNameSubmitted: boolean;
   public pointExists: boolean = false;
 
-  constructor(private pointService: PointService,
-              private formBuilder: FormBuilder) {
+  public segment: SegmentModel = new SegmentModel();
+
+  public loaded: boolean = false;
+
+  constructor(private pointService: PointService) {
   }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      pointName: [null, Validators.required]
-    });
     this.loadData();
   }
 
-  private loadData(): void{
-    this.pointService.getAllPoints().subscribe(data=>{
+  private loadData(): void {
+    this.pointService.getAllPoints().subscribe(data => {
       this.points = data as PointModel[];
-      })
+      this.loaded = true;
+    })
   }
-
-  get f() { return this.form.controls; }
 
   createPoint() {
     this.pointNameSubmitted = true;
-    if (!this.form.invalid) {
-      this.pointService.getPointByName(this.point.name).subscribe(value => {
-        if (value == null) {
-          this.pointService.createPoint(this.point).subscribe(value => {
-            this.pointExists = false;
-          });
-        } else {
-          this.pointExists = true;
-        }
-      });
-    }
+    this.pointService.getPointByName(this.point.name).subscribe(value => {
+      if (value == null) {
+        this.pointService.createPoint(this.point).subscribe(value => {
+          this.pointExists = false;
+          this.loadData();
+        });
+      } else {
+        this.pointExists = true;
+      }
+    });
+  }
+
+  createSegment() {
+
   }
 }

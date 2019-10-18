@@ -1,14 +1,13 @@
 <app-navigation></app-navigation>
-<form class="form-margin-top-bottom bg-light" [formGroup]="form">
+<form class="form-margin-top-bottom bg-light">
   <div class="form-row ">
     <div class="form-group col-md-2 offset-md-3">
       <p>Создать точку маршрута</p>
     </div>
     <div class="form-group col-md-2">
       <label for="inputNamepoint">Название точки</label>
-      <input type="text" class="form-control" id="inputNamepoint" placeholder="Название" name="pointName"  [(ngModel)]="point.name"
-             formControlName="pointName"  [ngClass]="{ 'is-invalid': pointNameSubmitted && f.pointName.errors || pointExists}"
-             autocomplete="off">
+      <input type="text" class="form-control" id="inputNamepoint" placeholder="Название"  [(ngModel)]="point.name"
+             name="pointName" [ngClass]="{ 'is-invalid': pointExists}" autocomplete="off">
       <div *ngIf="pointExists && pointNameSubmitted" class="text-danger">Такая точка уже существует</div>
     </div>
   </div>
@@ -31,25 +30,22 @@
     </div>
     <div class="form-group col-md-2">
       <label for="inputFirstpoint">Начальная точнка</label>
-      <select id="inputFirstpoint" class="form-control" [(ngModel)]="point">
-        <option *ngFor="let point of points" [value]="point.id">{{point.name}}</option>
+      <select id="inputFirstpoint" class="form-control" name="startPoint">
+        <option *ngFor="let point of points">{{point.name}}</option>
       </select>
     </div>
     <div class="form-group col-md-2">
       <label for="inputSecondpoint">Конечная точка</label>
-      <select id="inputSecondpoint" class="form-control" [(ngModel)]="point" >
-        <option *ngFor="let point of points" [value]="point.id">{{point.name}}</option>
+      <select id="inputSecondpoint" class="form-control" name="endPoint">
+        <option *ngFor="let point of points">{{point.name}}</option>
       </select>
     </div>
   </div>
   <div class="form-row ">
     <div class="form-group col-md-2 offset-md-3">
-      <label for="inputDistance">Растояние</label>
-      <input type="text" class="form-control" id="inputDistance" placeholder="Растояние">
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputNamesegment">Название отрезка</label>
-      <input type="text" class="form-control" id="inputNamesegment" placeholder="Название">
+      <label for="inputDistance">Растояние (в км.)</label>
+      <input type="text" class="form-control" id="inputDistance" placeholder="Растояние"
+             [(ngModel)]="segment.distance" name="distance">
     </div>
     <div class="form-group col-md-2">
       <label for="inputVihicletype">Тип транспорта</label>
@@ -61,7 +57,7 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-2 offset-md-3" >
-      <button type="submit" class="btn btn-primary" >Создать</button>
+      <button type="submit" class="btn btn-primary" (click)="createSegment()">Создать</button>
     </div>
   </div>
 

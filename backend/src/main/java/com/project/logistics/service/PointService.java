@@ -12,4 +12,6 @@ public interface PointService {
     PointEntity getPointById(Integer id);
 
     List<PointEntity> getLeftPoints(List<Integer> ids);
+
+    List<PointEntity> getAllPoints();
 }
