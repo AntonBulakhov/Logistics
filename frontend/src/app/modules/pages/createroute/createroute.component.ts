@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PointModel} from "../../../models/point.model";
 import {PointService} from "../../../services/point.service";
 import {SegmentModel} from "../../../models/segment.model";
+import {TransportService} from "../../../services/transport.service";
+import {TransportModel} from "../../../models/transport.model";
 
 @Component({
   selector: 'app-createroute',
@@ -19,7 +21,11 @@ export class CreaterouteComponent implements OnInit {
 
   public loaded: boolean = false;
 
-  constructor(private pointService: PointService) {
+  public  transports: TransportModel[];
+
+  constructor(private pointService: PointService,
+              private  transportService: TransportService
+  ){
   }
 
   ngOnInit() {
@@ -27,6 +33,10 @@ export class CreaterouteComponent implements OnInit {
   }
 
   private loadData(): void {
+    this.transportService.getAllTransport().subscribe(data=> {
+      this.transports = data as TransportModel[];
+      this.loaded = true;
+    })
     this.pointService.getAllPoints().subscribe(data => {
       this.points = data as PointModel[];
       this.loaded = true;
