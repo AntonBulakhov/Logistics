@@ -11,8 +11,8 @@ export class SegmentService {
 
   constructor(private http: HttpClient) { }
 
-  createSegment(segment: SegmentModel):Observable<SegmentModel>{
-    return this.http.post<SegmentModel>("/api/segment", segment)
+  createSegment(segment: SegmentModel):Observable<Boolean>{
+    return this.http.post<Boolean>("/api/segment", segment)
   }
 
   getAllSegments():Observable<SegmentModel[]>{

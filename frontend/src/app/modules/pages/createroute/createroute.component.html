@@ -1,5 +1,5 @@
 <app-navigation></app-navigation>
-<form class="form-margin-top-bottom bg-light">
+<form class="form-margin-top-bottom bg-light" *ngIf="loaded">
   <div class="form-row ">
     <div class="form-group col-md-2 offset-md-3">
       <p>Создать точку маршрута</p>
@@ -30,14 +30,14 @@
     </div>
     <div class="form-group col-md-2">
       <label for="inputFirstpoint">Начальная точнка</label>
-      <select id="inputFirstpoint" class="form-control" name="startPoint">
-        <option *ngFor="let point of points" [(ngModel)]="segment.startPoint">{{point.name}}</option>
+      <select id="inputFirstpoint" class="form-control" [(ngModel)]="segment.startPoint" name="startPoint">
+        <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
       </select>
     </div>
     <div class="form-group col-md-2">
       <label for="inputSecondpoint">Конечная точка</label>
-      <select id="inputSecondpoint" class="form-control" name="endPoint">
-        <option *ngFor="let point of points" [(ngModel)]="segment.endPoint">{{point.name}}</option>
+      <select id="inputSecondpoint" class="form-control" [(ngModel)]="segment.endPoint" name="endPoint">
+        <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
       </select>
     </div>
   </div>
@@ -45,12 +45,13 @@
     <div class="form-group col-md-2 offset-md-3">
       <label for="inputDistance">Растояние (в км.)</label>
       <input type="text" class="form-control" id="inputDistance" placeholder="Растояние"
-             [(ngModel)]="segment.distance" name="distance">
+             [(ngModel)]="segment.distance" name="distance" autocomplete="off">
     </div>
     <div class="form-group col-md-2">
       <label for="inputVihicletype">Тип транспорта</label>
-      <select id="inputVihicletype" class="form-control" name="transports">
-        <option *ngFor="let transport of transports" [(ngModel)]="segment.transport">{{transport.transportType.name.charAt(0).toUpperCase()+
+      <select id="inputVihicletype" class="form-control" [(ngModel)]="segment.transport" name="transport">
+        <option *ngFor="let transport of transports" [ngValue]="transport">
+          {{transport.transportType.name.charAt(0).toUpperCase()+
           transport.transportType.name.slice(1)}}</option>
       </select>
     </div>

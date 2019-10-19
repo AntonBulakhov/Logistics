@@ -38,11 +38,11 @@ export class CreaterouteComponent implements OnInit {
     this.transportService.getAllTransport().subscribe(data => {
       this.transports = data as TransportModel[];
       this.loaded = true;
-    })
+    });
     this.pointService.getAllPoints().subscribe(data => {
       this.points = data as PointModel[];
       this.loaded = true;
-    })
+    });
   }
 
   createPoint() {
