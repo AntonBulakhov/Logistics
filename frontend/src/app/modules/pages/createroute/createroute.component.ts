@@ -24,6 +24,8 @@ export class CreaterouteComponent implements OnInit {
 
   public transports: TransportModel[];
 
+  public inputCount = Array(0).fill(1).map((x, i) => i);
+
   constructor(private pointService: PointService,
               private segmentService: SegmentService,
               private  transportService: TransportService
@@ -63,5 +65,9 @@ export class CreaterouteComponent implements OnInit {
     this.segmentService.createSegment(this.segment).subscribe(value => {
       this.loadData();
     })
+  }
+
+  createSegmentsInputs(event: any) {
+    this.inputCount = Array(+event.target.value).fill(1).map((x, i) => i);
   }
 }

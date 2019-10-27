@@ -1,5 +1,6 @@
 <app-navigation></app-navigation>
 <form class="form-margin-top-bottom bg-light" *ngIf="loaded">
+  <!--create point-->
   <div class="form-row ">
     <div class="form-group col-md-2 offset-md-3">
       <p>Создать точку маршрута</p>
@@ -24,6 +25,7 @@
     </div>
   </div>
 
+  <!--create segment-->
   <div class="form-row">
     <div class="form-group col-md-2 offset-md-3">
       <p>Создать отрезок</p>
@@ -69,32 +71,18 @@
     </div>
   </div>
 
+  <!--create route-->
   <div class="form-row">
     <div class="form-group col-md-2 offset-md-3">
       <p>Создание маршрута</p>
     </div>
     <div class="form-group col-mb-2">
       <label for="inputSegmentnumber">Количество отрезков</label>
-      <input type="text" id="inputSegmentnumber" class="form-control" placeholder="Количество отрезков">
+      <input type="text" id="inputSegmentnumber" class="form-control" placeholder="Количество отрезков" (focusout)="createSegmentsInputs($event)">
     </div>
-    <div class="form-group col-md-1">
-      <label for="inputSegment1">Отрезок 1</label>
-      <select id="inputSegment1" class="form-control">
-        <option selected>Выберите...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-1">
-      <label for="inputSegment2">Отрезок 2</label>
-      <select id="inputSegment2" class="form-control">
-        <option selected>Выберите...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-1">
-      <label for="inputSegment3">Отрезок 3</label>
-      <select id="inputSegment3" class="form-control">
-        <option selected>Выберите...</option>
+    <div class="form-group col-md-1" *ngFor="let num of inputCount">
+      <label for="inputSegment{{num + 1}}">Отрезок {{num + 1}}</label>
+      <select id="inputSegment{{num + 1}}" class="form-control">
         <option>...</option>
       </select>
     </div>
