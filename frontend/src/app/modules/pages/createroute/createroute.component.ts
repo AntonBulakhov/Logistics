@@ -20,6 +20,7 @@ export class CreaterouteComponent implements OnInit {
 
   public segment: SegmentModel = new SegmentModel();
   public segments: SegmentModel[];
+  public  segmentExists: boolean = false;
 
   public loaded: boolean = false;
 
@@ -69,8 +70,12 @@ export class CreaterouteComponent implements OnInit {
   createSegment() {
     if (this.segment.startPoint.name != null && this.segment.endPoint.name != null && this.segment.distance != null && this.segment.transport != null) {
       this.segmentService.createSegment(this.segment).subscribe(value => {
+        this.segmentExists = false;
         this.loadData();
       });
+    }
+    else {
+      this.segmentExists = true;
     }
   }
 

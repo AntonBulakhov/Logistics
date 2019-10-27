@@ -47,7 +47,9 @@
     <div class="form-group col-md-2 offset-md-3">
       <label for="inputDistance">Растояние (в км.)</label>
       <input type="text" class="form-control" id="inputDistance" placeholder="Растояние"
-             [(ngModel)]="segment.distance" name="distance" autocomplete="off">
+             [(ngModel)]="segment.distance" name="distance" autocomplete="off" [ngClass]="{ 'is-invalid': segmentExists}">
+      <div *ngIf="segmentExists" class="text-danger">Все поля должны быть заполнены</div>
+
     </div>
     <div class="form-group col-md-2">
       <label for="inputVihicletype">Тип транспорта</label>
