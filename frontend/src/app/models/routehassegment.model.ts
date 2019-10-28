@@ -2,7 +2,7 @@ import {RouteModel} from "./route.model";
 import {SegmentModel} from "./segment.model";
 
 export class RoutehassegmentModel {
-  routeId:RouteModel;
+  routeId: RouteModel;
   segmentId: SegmentModel;
 
   static cloneBase(routehassegment: RoutehassegmentModel):RoutehassegmentModel {

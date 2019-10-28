@@ -13,6 +13,8 @@ import { TablesComponent } from './tables/tables.component';
 import { RegistrationComponent } from './registration/registration.component';
 import {PointService} from "../../services/point.service";
 import {RoleService} from "../../services/role.service";
+import {RouteService} from "../../services/route.service";
+import {TransportService} from "../../services/transport.service";
 
 
 
@@ -44,7 +46,9 @@ import {RoleService} from "../../services/role.service";
   ],
   providers: [
     PointService,
-    RoleService
+    RoleService,
+    RouteService,
+    TransportService
   ]
 })
 export class PagesModule { }
