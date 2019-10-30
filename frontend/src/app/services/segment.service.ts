@@ -16,6 +16,6 @@ export class SegmentService {
   }
 
   getAllSegments():Observable<SegmentModel[]>{
-    return this.http.get<SegmentModel[]>("/api/segments/all")
+    return this.http.get<SegmentModel[]>("/api/segment/all")
   }
 }

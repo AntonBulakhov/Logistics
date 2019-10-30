@@ -32,13 +32,15 @@
     </div>
     <div class="form-group col-md-2">
       <label for="inputFirstpoint">Начальная точнка</label>
-      <select id="inputFirstpoint" class="form-control" [(ngModel)]="segment.startPoint" name="startPoint">
+      <select id="inputFirstpoint" class="form-control" [(ngModel)]="segment.startPoint" name="startPoint"
+              [ngClass]="{ 'is-invalid': segmentExists}">
         <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
       </select>
     </div>
     <div class="form-group col-md-2">
       <label for="inputSecondpoint">Конечная точка</label>
-      <select id="inputSecondpoint" class="form-control" [(ngModel)]="segment.endPoint" name="endPoint">
+      <select id="inputSecondpoint" class="form-control" [(ngModel)]="segment.endPoint" name="endPoint"
+              [ngClass]="{ 'is-invalid': segmentExists}">
         <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
       </select>
     </div>
@@ -48,16 +50,18 @@
       <label for="inputDistance">Растояние (в км.)</label>
       <input type="text" class="form-control" id="inputDistance" placeholder="Растояние"
              [(ngModel)]="segment.distance" name="distance" autocomplete="off" [ngClass]="{ 'is-invalid': segmentExists}">
-      <div *ngIf="segmentExists" class="text-danger">Все поля должны быть заполнены</div>
-
     </div>
     <div class="form-group col-md-2">
       <label for="inputVihicletype">Тип транспорта</label>
-      <select id="inputVihicletype" class="form-control" [(ngModel)]="segment.transport" name="transport">
+      <select id="inputVihicletype" class="form-control" [(ngModel)]="segment.transport" name="transport"
+              [ngClass]="{ 'is-invalid': segmentExists}">
         <option *ngFor="let transport of transports" [ngValue]="transport">
           {{transport.transportType.name.charAt(0).toUpperCase()+
           transport.transportType.name.slice(1)}}</option>
       </select>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <div *ngIf="segmentExists" class="text-danger">Все поля должны быть заполнены</div>
     </div>
   </div>
   <div class="form-row">
@@ -82,16 +86,17 @@
       <label for="inputSegmentnumber">Количество отрезков</label>
       <input type="text" id="inputSegmentnumber" class="form-control" placeholder="Количество отрезков" (focusout)="createSegmentsInputs($event)">
     </div>
-    <div class="form-group col-md-1" *ngFor="let num of inputCount">
+    <div class="form-group col-md-2" *ngFor="let num of inputCount">
       <label for="inputSegment{{num + 1}}">Отрезок {{num + 1}}</label>
-      <select id="inputSegment{{num + 1}}" class="form-control">
-        <option>...</option>
+      <select id="inputSegment{{num + 1}}" class="form-control" [(ngModel)]="segmentsToRoute[num]" name="segmentToRoute{{num}}">
+        <option *ngFor="let segment of segments" [ngValue]="segment">
+          {{segment.startPoint.name}}-{{segment.endPoint.name}}</option>
       </select>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-2 offset-md-3" >
-      <button type="submit" class="btn btn-primary" >Создать</button>
+      <button type="submit" class="btn btn-primary" (click)="createRoute()">Создать</button>
     </div>
   </div>
 
