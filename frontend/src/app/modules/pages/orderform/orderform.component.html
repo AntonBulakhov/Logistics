@@ -2,44 +2,59 @@
 <form class="form-margin-top-bottom bg-light">
   <div class="form-row justify-content-md-center">
     <div class="form-group col-md-2">
-      <label for="inputLength">Длина</label>
-      <input type="number" class="form-control" id="inputLength" placeholder="Длина">
+      <label for="metricSystem">Система измерения</label>
+      <select id="metricSystem" class="form-control" (change)="onMetricSelect($event)">
+        <option selected value="M">Метрическая</option>
+        <option value="A">Английская</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row justify-content-md-center">
+    <div class="form-group col-md-2">
+      <label for="inputLength" *ngIf="selectedMetric == 'M'">Длина (см.)</label>
+      <label for="inputLength" *ngIf="selectedMetric == 'A'">Длина (дюйм)</label>
+      <input type="number" class="form-control" id="inputLength" placeholder="Длина"
+             [(ngModel)]="length">
     </div>
     <div class="form-group col-md-2">
-      <label for="inputWidth">Ширина</label>
-      <input type="number" class="form-control" id="inputWidth" placeholder="Ширина">
+      <label for="inputWidth" *ngIf="selectedMetric == 'M'">Ширина (см.)</label>
+      <label for="inputWidth" *ngIf="selectedMetric == 'A'">Ширина (дюйм)</label>
+      <input type="number" class="form-control" id="inputWidth" placeholder="Ширина"
+             [(ngModel)]="width">
     </div>
     <div class="form-group col-md-2">
-      <label for="inputHeight">Высота</label>
-      <input type="number" class="form-control" id="inputHeight" placeholder="Высота">
+      <label for="inputHeight" *ngIf="selectedMetric == 'M'">Высота (см.)</label>
+      <label for="inputHeight" *ngIf="selectedMetric == 'A'">Высота (дюйм)</label>
+      <input type="number" class="form-control" id="inputHeight" placeholder="Высота"
+             [(ngModel)]="height">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-2 offset-md-3">
-      <label for="inputWeight">Вес</label>
-      <input type="number" class="form-control" id="inputWeight" placeholder="Вес">
+      <label for="inputWeight" *ngIf="selectedMetric == 'M'">Вес (кг.)</label>
+      <label for="inputWeight" *ngIf="selectedMetric == 'A'">Вес (фунт)</label>
+      <input type="number" class="form-control" id="inputWeight" placeholder="Вес"
+             [(ngModel)]="order.weight">
     </div>
   </div>
   <div class="form-row justify-content-center">
     <div class="form-group col-md-3">
       <label for="inputDeparture">Место отправки</label>
-      <select id="inputDeparture" class="form-control">
-        <option selected>Выберите...</option>
-        <option>...</option>
+      <select id="inputDeparture" class="form-control" [(ngModel)]="startPoint" name="startPoint">
+        <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
       </select>
     </div>
     <div class="form-group col-md-3">
       <label for="inputDelivery">Место доставки</label>
-      <select id="inputDelivery" class="form-control">
-        <option selected>Выберите...</option>
-        <option>...</option>
+      <select id="inputDelivery" class="form-control" [(ngModel)]="endPoint" name="endPoint">
+        <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
       </select>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-2 offset-md-3">
       <label for="inputDataDelivery">Дата доставки</label>
-      <input type="date" id="inputDataDelivery" class="form-control">
+      <input type="date" id="inputDataDelivery" class="form-control" [(ngModel)]="order.deliveryDate" name="date">
     </div>
   </div>
   <div class="form-row">
@@ -49,7 +64,7 @@
   </div>
   <div class="form-row">
     <div class="from-group col-md-3 offset-md-3">
-      <button type="submit" class="btn btn-primary col-8" routerLink="/confirm">Продолжить</button>
+      <button type="submit" class="btn btn-primary col-8" (click)="createOrder()">Продолжить</button>
     </div>
   </div>
 </form>

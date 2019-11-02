@@ -15,6 +15,12 @@ export class OrderModel {
   static cloneBase(order: OrderModel): OrderModel {
     const cloneOrdertModel: OrderModel = new OrderModel();
     cloneOrdertModel.id = order.id;
+    cloneOrdertModel.weight = order.weight;
+    cloneOrdertModel.cost = order.cost;
+    cloneOrdertModel.deliveryDate = order.deliveryDate;
+    cloneOrdertModel.user = order.user;
+    cloneOrdertModel.orderStatus = order.orderStatus;
+    cloneOrdertModel.route = order.route;
     return cloneOrdertModel;
   }
 }
