@@ -8,4 +8,5 @@ public interface SegmentService {
     SegmentEntity createSegment(SegmentEntity entity);
     boolean ifSegmentExists(SegmentEntity entity);
     List<SegmentEntity> getAllSegments();
+    List<SegmentEntity> getAllSegmentsByRouteId(Integer routeId);
 }

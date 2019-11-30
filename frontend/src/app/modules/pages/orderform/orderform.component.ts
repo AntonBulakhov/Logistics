@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PointService} from "../../../services/point.service";
 import {OrderService} from "../../../services/order.service";
 import {PointModel} from "../../../models/point.model";
@@ -28,12 +28,13 @@ export class OrderformComponent implements OnInit {
 
   public points: PointModel[];
 
-  public order: OrderModel;
+  public order: OrderModel = new OrderModel();
 
   constructor(private pointService: PointService,
               private dataService: DataService,
               private router: Router,
-              private statusService: OrderstatusService) { }
+              private statusService: OrderstatusService) {
+  }
 
   ngOnInit() {
     this.pointService.getAllPoints().subscribe(value => {
@@ -51,15 +52,26 @@ export class OrderformComponent implements OnInit {
 
   createOrder() {
     let newOrder: NewOrderModel = new NewOrderModel();
-    newOrder.order = this.order;
+    this.order.value = this.getValue();
+    newOrder.newOrder = this.order;
     newOrder.startPoint = this.startPoint;
     newOrder.endPoint = this.endPoint;
-    newOrder.order.orderStatus = this.getNewStatus();
+    newOrder.newOrder.orderStatus = this.getNewStatus();
     this.dataService.saveOrder(newOrder);
     this.router.navigate(['/confirm']);
   }
 
-  public getNewStatus(): OrderstatusModel{
-    return this.statuses.find(obj=> obj.name == 'new');
+  public getValue(): string {
+    let value : number = this.height * this.width * this.length;
+    if (this.selectedMetric == 'M') {
+      value = value * 0.001;
+    } else {
+      value = value * 0.016387064;
+    }
+    return value.toString();
+  }
+
+  public getNewStatus(): OrderstatusModel {
+    return this.statuses.find(obj => obj.name == 'new');
   }
 }

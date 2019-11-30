@@ -10,6 +10,7 @@ public class RouteEntity {
     private PointEntity endPoint;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;
