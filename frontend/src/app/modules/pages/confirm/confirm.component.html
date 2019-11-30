@@ -1,53 +1,21 @@
 <app-navigation></app-navigation>
 <form class="form-margin-top-bottom">
-  <div class="form-row justify-content-center" >
-   <div class="form-check form-group col-md-1" >
-    <label class="form-check-label">
-      <input type="radio" class="form-check-input" name="optradio">Option 1
-    </label>
-   </div>
-    <div class="form-group col-md-1">
-      <p>Variant</p>
+  <div class="form-row justify-content-center" *ngFor="let route of alternativeRoutes, let i = index">
+    <div class="form-check form-group col-md-1">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optradio">Путь {{i + 1}}
+      </label>
     </div>
     <div class="form-group col-md-1">
-      <p>Value</p>
+      <p>{{route.route.startPoint.name}}-{{route.route.endPoint.name}}</p>
     </div>
     <div class="form-group col-md-1">
-      <p>Tme</p>
+      <p>{{route.deliveryTime}} д.</p>
+    </div>
+    <div class="form-group col-md-1">
+      <p>{{route.price}}$</p>
     </div>
   </div>
-    <div class="form-row justify-content-center" >
-      <div class="form-check form-group col-md-1" >
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optradio">Option 2
-        </label>
-      </div>
-      <div class="form-group col-md-1">
-        <p>Variant</p>
-      </div>
-      <div class="form-group col-md-1">
-        <p>Value</p>
-      </div>
-      <div class="form-group col-md-1">
-        <p>Tme</p>
-      </div>
-    </div>
-    <div class="form-row justify-content-center" >
-      <div class="form-check form-group col-md-1" >
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optradio">Option 3
-        </label>
-      </div>
-      <div class="form-group col-md-1">
-        <p>Variant</p>
-      </div>
-      <div class="form-group col-md-1">
-        <p>Value</p>
-      </div>
-      <div class="form-group col-md-1">
-        <p>Tme</p>
-      </div>
-    </div>
   <div class="form-row">
     <div class="form-group col-md-6 offset-md-3">
       <hr>
@@ -58,13 +26,16 @@
 
   <div class="form-row">
     <div class="from-group col-md-2 offset-md-4">
-      <button type="button" class="btn btn-primary col-8" data-toggle="modal" data-target="#modalPayment">Перейти к оплате</button>
+      <button type="button" class="btn btn-primary col-8" data-toggle="modal" data-target="#modalPayment">Перейти к
+        оплате
+      </button>
     </div>
   </div>
 
   <!-- Modal -->
 
-  <div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="modalPaymentLabel" aria-hidden="true">
+  <div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="modalPaymentLabel"
+       aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -81,7 +52,7 @@
             <input type="text" name="username" placeholder="Ivan Ivanov" class="form-control" required>
           </div>
           <div class="form-row">
-            <div class="form-group col-md" >
+            <div class="form-group col-md">
               <label>Номер карты</label>
               <input type="text" name="cardNumber" placeholder="Ваш номер карты" class="form-control" required>
             </div>
@@ -91,8 +62,10 @@
               <div class="form-group">
                 <label><span class="hidden-xs">Дата действительности</span></label>
                 <div class="input-group">
-                  <input type="text" placeholder="MM" name="" class="form-control"  maxlength="2" pattern="\d{2}" required>
-                  <input type="text" placeholder="YY" name="" class="form-control"  maxlength="2" pattern="\d{2}" required>
+                  <input type="text" placeholder="MM" name="" class="form-control" maxlength="2" pattern="\d{2}"
+                         required>
+                  <input type="text" placeholder="YY" name="" class="form-control" maxlength="2" pattern="\d{2}"
+                         required>
                 </div>
               </div>
             </div>
