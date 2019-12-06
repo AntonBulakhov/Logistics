@@ -1,9 +1,13 @@
 package com.project.logistics.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "role", schema = "logisticsdb")
+@Table(name = "role", schema = "logisticsdb", catalog = "")
 public class RoleEntity {
     private int id;
     private String name;

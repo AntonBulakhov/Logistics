@@ -1,10 +1,16 @@
 package com.project.logistics.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.sql.Date;
 
 @Entity
-@Table(name = "order", schema = "logisticsdb")
+@Table(name = "`order`", schema = "logisticsdb", catalog = "")
 public class OrderEntity {
     private int id;
     private double weight;

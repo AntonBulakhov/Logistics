@@ -64,6 +64,10 @@ public class RouteServiceImpl implements RouteService {
                 time += segment.getDistance() / transport.getSpeed();
                 price += processPriceConfiguration(transport, time, newOrder);
             }
+            //if order value or weight > max value or weight of transport
+            if (price == 0) {
+                continue;
+            }
             AlternativeRoute alternativeRoute = new AlternativeRoute();
             alternativeRoute.setRoute(route);
             alternativeRoute.setSegments(segments);
@@ -82,6 +86,9 @@ public class RouteServiceImpl implements RouteService {
     protected float processPriceConfiguration(TransportEntity transportEntity, double time, NewOrder order) {
         double occupiedValue = order.getNewOrder().getValue() / transportEntity.getMaxValue();
         double occupiedWeight = order.getNewOrder().getWeight() / transportEntity.getMaxWeight();
+        if (occupiedWeight > 1 || occupiedValue > 1) {
+            return 0;
+        }
         double coefficient = (occupiedValue + occupiedWeight) / 2;
         double price = coefficient * transportEntity.getCostPerHour() * time;
 
