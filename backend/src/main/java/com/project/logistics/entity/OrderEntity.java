@@ -1,6 +1,7 @@
 package com.project.logistics.entity;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -112,7 +113,7 @@ public class OrderEntity {
         this.route = route;
     }
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     public UserEntity getUser() {
         return user;

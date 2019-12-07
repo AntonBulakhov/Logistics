@@ -11,11 +11,15 @@ import java.util.List;
 @Service
 public class RoleServiceImpl implements RoleService {
 
-    @Autowired
     private RoleRepository roleRepository;
 
     @Override
     public List<RoleEntity> getAllRoles() {
         return (List<RoleEntity>)roleRepository.findAll();
+    }
+
+    @Autowired
+    public void setRoleRepository(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
     }
 }
