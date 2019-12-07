@@ -2,10 +2,12 @@ package com.project.logistics.controller;
 
 import com.project.logistics.dto.AlternativeRoute;
 import com.project.logistics.dto.NewOrder;
+import com.project.logistics.dto.neworder.NewOrPaidOrder;
 import com.project.logistics.entity.OrderEntity;
 import com.project.logistics.service.OrderService;
 import com.project.logistics.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,11 @@ public class OrderController {
     @PostMapping("/save")
     public Boolean saveNewOrder(@RequestBody OrderEntity newOrder) {
         return orderService.saveNewOrder(newOrder);
+    }
+
+    @GetMapping("/paid")
+    public List<NewOrPaidOrder> getNewOrPaidOrders() {
+        return orderService.getNewOrPaidOrders();
     }
 
     @Autowired

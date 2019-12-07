@@ -15,4 +15,7 @@ export class OrderService {
     return this.http.post<boolean>("/api/order/save", order);
   }
 
+  getNewOrPaidOrders(): Observable<OrderModel[]> {
+    return this.http.get<OrderModel[]>("/api/order/paid");
+  }
 }
