@@ -36,6 +36,7 @@
               [ngClass]="{ 'is-invalid': segmentExists}">
         <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
       </select>
+      <div *ngIf="isPointsSame == false" class="text-danger">Выберите две разные точки</div>
     </div>
     <div class="form-group col-md-2">
       <label for="inputSecondpoint">Конечная точка</label>
@@ -43,6 +44,7 @@
               [ngClass]="{ 'is-invalid': segmentExists}">
         <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
       </select>
+      <div *ngIf="isPointsSame == false" class="text-danger">Выберите две разные точки</div>
     </div>
   </div>
   <div class="form-row ">
