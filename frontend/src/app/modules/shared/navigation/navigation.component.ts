@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RoleService} from "../../../services/role.service";
-import {Router} from "@angular/router";
+import {AuthService} from "../../../services/security/auth.service";
+import {UserModel} from "../../../models/user.model";
 
 @Component({
   selector: 'app-navigation',
@@ -9,14 +10,20 @@ import {Router} from "@angular/router";
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private roleService: RoleService) { }
+  public loginUser: UserModel = new UserModel();
+
+  constructor(private roleService: RoleService,
+              private auth: AuthService) {
+  }
 
   ngOnInit() {
   }
 
-  getAllRoles() {
-    this.roleService.getAllRoles().subscribe(value => {
-      console.log(value);
-    })
+  public onSubmit(): void {
+    this.auth.signIn(this.loginUser);
+  }
+
+  public logOut():void{
+    this.auth.logOut();
   }
 }

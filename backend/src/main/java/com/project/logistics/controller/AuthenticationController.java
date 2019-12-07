@@ -50,8 +50,8 @@ public class AuthenticationController {
     }
 
     @GetMapping("/user")
-    public SafeUser authUser(Principal userInfo){
-        return userService.getSafeUserByLogin(userInfo.getName());
+    public ResponseEntity<SafeUser> authUser(Principal userInfo){
+        return ResponseEntity.ok(userService.getSafeUserByLogin(userInfo.getName()));
     }
 
     @Autowired

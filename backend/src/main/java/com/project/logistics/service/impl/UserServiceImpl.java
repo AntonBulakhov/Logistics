@@ -65,6 +65,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return authorities;
     }
 
+    @Override
+    public UserEntity getUserById(Integer id) {
+        return userRepository.findById(id).get();
+    }
+
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
         UserEntity existingUser = userRepository.getByLogin(ADMIN_LOGIN);
