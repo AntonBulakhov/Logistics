@@ -1,9 +1,13 @@
 package com.project.logistics.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "route_has_segment", schema = "logisticsdb")
+@Table(name = "route_has_segment", schema = "logisticsdb", catalog = "")
 @IdClass(RouteHasSegmentEntityPK.class)
 public class RouteHasSegmentEntity {
     private int routeId;

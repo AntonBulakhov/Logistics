@@ -1,9 +1,13 @@
 package com.project.logistics.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "point", schema = "logisticsdb")
+@Table(name = "point", schema = "logisticsdb", catalog = "")
 public class PointEntity {
     private int id;
     private String name;

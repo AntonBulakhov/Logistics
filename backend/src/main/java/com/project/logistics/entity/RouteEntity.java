@@ -1,16 +1,20 @@
 package com.project.logistics.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "route", schema = "logisticsdb")
+@Table(name = "route", schema = "logisticsdb", catalog = "")
 public class RouteEntity {
     private int id;
     private PointEntity startPoint;
     private PointEntity endPoint;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;

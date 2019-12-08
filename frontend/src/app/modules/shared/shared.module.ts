@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavigationComponent } from './navigation/navigation.component';
-import { FooterComponent } from './footer/footer.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NavigationComponent} from './navigation/navigation.component';
+import {FooterComponent} from './footer/footer.component';
 import {RouterModule} from "@angular/router";
-import {RoleService} from "../../services/role.service";
-import {ProfileComponent} from "../pages/profile/profile.component";
-
+import {AuthService} from "../../services/security/auth.service";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -16,10 +15,11 @@ import {ProfileComponent} from "../pages/profile/profile.component";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   providers: [
-    RoleService
+    AuthService
   ]
 })
 export class SharedModule { }

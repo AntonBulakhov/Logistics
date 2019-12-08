@@ -12,7 +12,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="getAllRoles()">About</a>
+          <a class="nav-link">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/orderform" >Services</a>
@@ -30,22 +30,24 @@
     </div>
   </div>
 
-  <div class="row col-1 mr-4">
+  <div class="row col-1 mr-4" *ngIf="auth.user != null">
     <div class="row dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <img class="mr-3 mt-auto rounded-circle" src="/assets/img/avatar.png" alt="" style="height: 35px">
-      <p class="text-white mb-auto mt-auto ml-1" style="margin-bottom: 0; cursor: default">User</p>
+      <p class="text-white mb-auto mt-auto ml-1" style="margin-bottom: 0; cursor: default">{{auth.user.name}}</p>
     </div>
     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-      <button class="dropdown-item" type="button" routerLink="/profile">Profile</button>
+      <button class="dropdown-item" type="button" routerLink="/profile">Профиль</button>
       <div class="dropdown-divider"></div>
       <button class="dropdown-item" type="button">Companies</button>
       <button class="dropdown-item" type="button">New Admin</button>
       <div class="dropdown-divider"></div>
-      <button class="dropdown-item" type="button">Log out</button>
+      <button class="dropdown-item" type="button" (click)="logOut()">Выйти</button>
     </div>
-    <button type="button" class="btn btn-outline-primary mr-3" data-toggle="modal"  data-target="#modalLogin">Sign In</button>
   </div>
+  <button type="button" class="btn btn-outline-primary mr-3" data-toggle="modal"  data-target="#modalLogin" *ngIf="auth.user == null">Войти</button>
 </nav>
+
+
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginlabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -55,15 +57,23 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body justify-content-center">
         <div class="form-group">
-          <input type="email" name="email" id="login" class="form-control input-sm" placeholder="Логин">
+          <label for="login">Логин</label>
+          <input type="text" name="login" id="login" class="form-control input-sm" placeholder="Введите логин" #login="ngModel"
+            [(ngModel)]="loginUser.login" required minlength="4" autocomplete="off">
+          <small [hidden]="login.valid || login.untouched" class="text-danger">Логин не верный</small>
         </div>
         <div class="form-group">
-          <input type="email" name="email" id="password" class="form-control input-sm" placeholder="Пароль">
+          <label for="password">Пароль</label>
+          <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Введите пароль"
+            [(ngModel)]="loginUser.password" required minlength="4" #password="ngModel">
+          <small [hidden]="password.valid || password.untouched" class="text-danger">Пароль не верный</small>
+        </div>
+        <div class="container-fluid justify-content-center d-flex mb-3">
+          <button type="submit" class="btn btn-primary col-6" (click)="onSubmit()">Войти</button>
         </div>
         <p><a routerLink="/registration" data-dismiss="modal" >Еще не зарегестрированы? Пройдите быструю регистрацию</a> </p>
-        <input type="submit" value="Регистрация" class="btn btn-info btn-block">
       </div>
     </div>
   </div>

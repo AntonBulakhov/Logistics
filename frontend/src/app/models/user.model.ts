@@ -17,3 +17,7 @@ export class UserModel {
     return cloneUserModel;
   }
 }
+
+export class AuthToken{
+  token:string;
+}

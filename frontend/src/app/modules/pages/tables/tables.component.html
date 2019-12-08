@@ -1,100 +1,33 @@
 <app-navigation></app-navigation>
 <form class="form-margin-top-bottom">
-<table class="table table-bordered table-hover">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Пользователь</th>
-    <th scope="col">Цена</th>
-    <th scope="col">Дата доставки</th>
-    <th scope="col">Статус заказа</th>
-    <th scope="col">Подтверждение</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-    <td>@mdo</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  <tr>
-    <th scope="row">2</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@TwBootstrap</td>
-    <td>@TwBootstrap</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  <tr>
-    <th scope="row">3</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    <td>@fat</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  <tr>
-    <th scope="row">4</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    <td>@fat</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  <tr>
-    <th scope="row">5</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    <td>@fat</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  <tr>
-    <th scope="row">6</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    <td>@fat</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  <tr>
-    <th scope="row">7</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    <td>@fat</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  <tr>
-    <th scope="row">8</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    <td>@fat</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  <tr>
-    <th scope="row">9</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    <td>@fat</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  <tr>
-    <th scope="row">10</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    <td>@fat</td>
-    <td><input class="btn btn-primary" type="submit" value="Подтвердить"></td>
-  </tr>
-  </tbody>
-</table>
-  <nav aria-label="Page navigation example">
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Пользователь</th>
+      <th scope="col">Цена</th>
+      <th scope="col">Дата доставки</th>
+      <th scope="col">Статус заказа</th>
+      <th scope="col">Подтверждение</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders; let i = index"
+        [ngClass]="{ hidden : order.orderStatus.name != 'new' || order.orderStatus.name != 'paid'}">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{order.user.name}}</td>
+      <td>{{order.cost}}$</td>
+      <td>{{order.deliveryDate}}</td>
+      <td>{{order.orderStatus.name}}</td>
+      <td>
+        <button class="btn btn-primary" (click)="confirmOrder(order)">Подтвердить</button>
+        <p class="btn btn-link pt-3" (click)="rejectOrder(order)">Отменить</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--  hidden for now-->
+  <nav aria-label="Page navigation example" hidden>
     <ul class="pagination justify-content-center">
       <li class="page-item">
         <a class="page-link" href="#" aria-label="Previous">
