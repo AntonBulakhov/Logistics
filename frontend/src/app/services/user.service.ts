@@ -11,7 +11,15 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
+  saveUser(user: UserModel): Observable<boolean>{
+    return this.http.post<boolean>("/api/user", user);
+  }
+
   getFullUserById(id: string): Observable<UserModel> {
     return this.http.get<UserModel>("/api/user/profile/" + id);
+  }
+
+  getAllEmployees(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>("/api/user/employees");
   }
 }

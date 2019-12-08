@@ -15,6 +15,7 @@ import {PointService} from "../../services/point.service";
 import {RoleService} from "../../services/role.service";
 import {RouteService} from "../../services/route.service";
 import {TransportService} from "../../services/transport.service";
+import { EmployeesComponent } from './employees/employees.component';
 
 
 
@@ -26,7 +27,8 @@ import {TransportService} from "../../services/transport.service";
     ConfirmComponent,
     CreaterouteComponent,
     TablesComponent,
-    RegistrationComponent],
+    RegistrationComponent,
+    EmployeesComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -42,7 +44,8 @@ import {TransportService} from "../../services/transport.service";
     ConfirmComponent,
     CreaterouteComponent,
     TablesComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    EmployeesComponent
   ],
   providers: [
     PointService,

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {NavigationExtras, Router} from "@angular/router";
 import {Observable} from "rxjs";
@@ -16,31 +16,31 @@ export class AuthService {
               private userService: UserService) {
     let user = JSON.parse(sessionStorage.getItem('user'));
     let token = sessionStorage.getItem('token');
-    if(user && token){
+    if (user && token) {
       this.user = user;
       this.token = token;
-    }else {
+    } else {
       this.user = null;
       this.token = "";
     }
   }
 
-  public getToken(user: UserModel):Observable<AuthToken>{
+  public getToken(user: UserModel): Observable<AuthToken> {
     return this.http.post<AuthToken>("/api/auth/token", user);
   }
 
-  public regNewUser(user: UserModel): Observable<UserModel>{
-    return this.http.post<UserModel>('api/auth/sign-up',user);
+  public regNewUser(user: UserModel): Observable<AuthToken> {
+    return this.http.post<AuthToken>('api/auth/sign-up', user);
   }
 
-  public userAuth():Observable<UserModel>{
+  public userAuth(): Observable<UserModel> {
     return this.http.get<UserModel>("/api/auth/user");
   }
 
-  public signIn(authUser: UserModel):void{
-    this.getToken(authUser).subscribe(data=>{
+  public signIn(authUser: UserModel): void {
+    this.getToken(authUser).subscribe(data => {
       this.token = data.token;
-      this.userAuth().subscribe(data=>{
+      this.userAuth().subscribe(data => {
         this.user = data;
         sessionStorage.setItem("user", JSON.stringify(this.user));
         sessionStorage.setItem("token", this.token);
@@ -52,9 +52,15 @@ export class AuthService {
     })
   }
 
-  public signUp(authUser: UserModel):void{
-    this.regNewUser(authUser).subscribe(data=>{
-      this.router.navigate(['']);
+  public signUp(authUser: UserModel): void {
+    this.regNewUser(authUser).subscribe(data => {
+      this.token = data.token;
+      this.userAuth().subscribe(data => {
+        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("token", this.token);
+        this.user = data;
+        this.router.navigate(['']);
+      })
     })
   }
 
@@ -67,7 +73,8 @@ export class AuthService {
   //   });
   // }
 
-  public logOut():void{
+  public logOut(): void {
+    localStorage.clear();
     sessionStorage.clear();
     this.user = null;
     this.token = "";

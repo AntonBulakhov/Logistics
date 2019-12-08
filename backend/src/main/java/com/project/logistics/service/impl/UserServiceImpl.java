@@ -19,13 +19,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static com.project.logistics.constants.InitialAdminConstants.ADMIN_EMAIL;
 import static com.project.logistics.constants.InitialAdminConstants.ADMIN_LOGIN;
 import static com.project.logistics.constants.InitialAdminConstants.ADMIN_NAME;
 import static com.project.logistics.constants.InitialAdminConstants.ADMIN_PASSWORD;
+import static com.project.logistics.constants.InitialAdminConstants.ADMIN_ROLE_ID;
 import static com.project.logistics.constants.InitialAdminConstants.ADMIN_SURNAME;
+import static com.project.logistics.constants.InitialAdminConstants.EMPLOYEE_ROLE_ID;
 
 @Service("customUserDetailsService")
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -34,8 +37,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private UserRepository userRepository;
     private UserToSafeUserConverter userConverter;
     private BCryptPasswordEncoder bCrypt;
-
-    private static Integer ADMIN_ROLE_ID = 1;
 
     @Override
     public SafeUser getSafeUserByLogin(String login) {
@@ -51,6 +52,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserEntity saveUser(UserEntity userEntity) {
         userEntity.setPassword(bCrypt.encode(userEntity.getPassword()));
         return userRepository.save(userEntity);
+    }
+
+    @Override
+    public List<SafeUser> getAllEmployees() {
+        RoleEntity roleEntity = roleRepository.findById(EMPLOYEE_ROLE_ID).get();
+        List<UserEntity> userEntities = userRepository.getAllByRole(roleEntity);
+        return userConverter.convert(userEntities);
     }
 
     @Override
