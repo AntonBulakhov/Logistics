@@ -24,6 +24,7 @@ export class CreaterouteComponent implements OnInit {
   public segment: SegmentModel = new SegmentModel();
   public segments: SegmentModel[];
   public segmentExists: boolean = false;
+  private isPointsSame: boolean;
 
   public loaded: boolean = false;
 
@@ -74,15 +75,17 @@ export class CreaterouteComponent implements OnInit {
   }
 
   createSegment() {
+    this.isPointsSame=this.segment.startPoint.name != this.segment.endPoint.name;
+    if (this.isPointsSame){
     if (Object.keys(this.segment).length !== 0 && this.segment.startPoint.name != null && this.segment.endPoint.name != null &&
       this.segment.distance != null && this.segment.transport != null) {
       this.segmentService.createSegment(this.segment).subscribe(value => {
         this.segmentExists = false;
         this.loadData();
-      });
+      })
     } else {
       this.segmentExists = true;
-    }
+    }}
   }
 
   createSegmentsInputs(event: any) {
