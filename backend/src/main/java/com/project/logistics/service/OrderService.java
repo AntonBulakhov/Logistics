@@ -8,4 +8,5 @@ import java.util.List;
 public interface OrderService {
     boolean saveNewOrder(OrderEntity newOrder);
     List<NewOrPaidOrder> getNewOrPaidOrders();
+    List<OrderEntity> getOrdersByUserId(Integer id);
 }

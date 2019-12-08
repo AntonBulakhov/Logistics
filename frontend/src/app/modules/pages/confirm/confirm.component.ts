@@ -8,6 +8,7 @@ import {RouteService} from "../../../services/route.service";
 import {OrderstatusModel} from "../../../models/orderstatus.model";
 import {OrderstatusService} from "../../../services/orderstatus.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../services/security/auth.service";
 
 @Component({
   selector: 'app-confirm',
@@ -29,7 +30,8 @@ export class ConfirmComponent implements OnInit {
               private orderService: OrderService,
               private routeService: RouteService,
               private statusService: OrderstatusService,
-              private router: Router) {
+              private router: Router,
+              private auth: AuthService) {
   }
 
   ngOnInit() {
@@ -57,6 +59,7 @@ export class ConfirmComponent implements OnInit {
     this.order.route = this.selectedAlternativeRoute.route;
     this.order.orderStatus = this.getPaidStatus();
     this.order.cost = this.selectedAlternativeRoute.price;
+    this.order.user = this.auth.user;
 
     this.orderService.saveNewOrder(this.order).subscribe(value => {
       if (value) {

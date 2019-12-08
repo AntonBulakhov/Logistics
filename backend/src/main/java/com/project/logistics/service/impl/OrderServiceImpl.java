@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean saveNewOrder(OrderEntity newOrder) {
-        Optional<UserEntity> userEntity = userRepository.findById(1);
+        Optional<UserEntity> userEntity = userRepository.findById(newOrder.getUser().getId());
         newOrder.setUser(userEntity.get());
         return orderRepository.save(newOrder) != null;
     }
@@ -41,6 +41,17 @@ public class OrderServiceImpl implements OrderService {
         List<OrderStatusEntity> statuses = orderStatusRepository.getAllByNameIn(Arrays.asList(NEW_ORDER, PAID_ORDER));
         List<OrderEntity> entities = orderRepository.getAllByOrderStatusIn(statuses);
         return toNewOrPaidOrderConverter.convert(entities);
+    }
+
+    @Override
+    public List<OrderEntity> getOrdersByUserId(Integer id) {
+        UserEntity userEntity = userRepository.findById(id).get();
+        List<OrderEntity> orders = orderRepository.getAllByUser(userEntity);
+        for (OrderEntity order : orders) {
+            order.getUser().setLogin("");
+            order.getUser().setPassword("");
+        }
+        return orders;
     }
 
     @Autowired

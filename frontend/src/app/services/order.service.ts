@@ -18,4 +18,8 @@ export class OrderService {
   getNewOrPaidOrders(): Observable<OrderModel[]> {
     return this.http.get<OrderModel[]>("/api/order/paid");
   }
+
+  getOrdersByUserId(id: string): Observable<OrderModel[]> {
+    return this.http.get<OrderModel[]>("/api/order/user/" + id);
+  }
 }
