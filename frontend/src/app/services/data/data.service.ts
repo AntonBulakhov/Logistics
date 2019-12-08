@@ -18,4 +18,12 @@ export class DataService {
   getOrder(): NewOrderModel {
     return JSON.parse(localStorage.getItem('order'));
   }
+
+  saveRoleName(roleName: string) {
+    localStorage.setItem('role_name', JSON.stringify(roleName));
+  }
+
+  getRoleName(): string {
+    return JSON.parse(localStorage.getItem('role_name'))
+  }
 }

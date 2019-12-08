@@ -7,6 +7,7 @@ import {ConfirmComponent} from "./modules/pages/confirm/confirm.component";
 import {CreaterouteComponent} from "./modules/pages/createroute/createroute.component";
 import {TablesComponent} from "./modules/pages/tables/tables.component";
 import {RegistrationComponent} from "./modules/pages/registration/registration.component";
+import {EmployeesComponent} from "./modules/pages/employees/employees.component";
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'confirm', component: ConfirmComponent},
   {path: 'createroute', component: CreaterouteComponent},
   {path: 'tables', component: TablesComponent},
-  {path: 'registration', component: RegistrationComponent}
+  {path: 'registration', component: RegistrationComponent},
+  {path: 'employees', component: EmployeesComponent}
 ];
 
 @NgModule({

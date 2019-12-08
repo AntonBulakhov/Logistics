@@ -43,14 +43,32 @@ public class AuthenticationController {
         return ResponseEntity.ok(new AuthToken(token));
     }
 
-    @RequestMapping (value = "/sign-up", method = RequestMethod.POST)
-    public boolean regNewUser(@RequestBody UserEntity user){
+    @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
+    public ResponseEntity<AuthToken> regNewUser(@RequestBody UserEntity user) {
+        UserEntity userAuth = copyUser(user);
         UserEntity userResult = userService.saveUser(user);
-        return userResult != null;
+        if (userResult == null) return ResponseEntity.badRequest().build();
+
+        final Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        userAuth.getLogin(),
+                        userAuth.getPassword()
+                )
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        final String token = tokenProvider.generateToken(authentication);
+        return ResponseEntity.ok(new AuthToken(token));
+    }
+
+    private UserEntity copyUser(UserEntity user) {
+        UserEntity copy = new UserEntity();
+        copy.setLogin(user.getLogin());
+        copy.setPassword(user.getPassword());
+        return copy;
     }
 
     @GetMapping("/user")
-    public ResponseEntity<SafeUser> authUser(Principal userInfo){
+    public ResponseEntity<SafeUser> authUser(Principal userInfo) {
         return ResponseEntity.ok(userService.getSafeUserByLogin(userInfo.getName()));
     }
 

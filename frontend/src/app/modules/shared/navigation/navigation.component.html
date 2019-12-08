@@ -18,12 +18,6 @@
           <a class="nav-link" routerLink="/orderform" >Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/tables" >Tables</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/createroute" >Create route</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>
       </ul>
@@ -35,11 +29,19 @@
       <img class="mr-3 mt-auto rounded-circle" src="/assets/img/avatar.png" alt="" style="height: 35px">
       <p class="text-white mb-auto mt-auto ml-1" style="margin-bottom: 0; cursor: default">{{auth.user.name}}</p>
     </div>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
       <button class="dropdown-item" type="button" routerLink="/profile">Профиль</button>
       <div class="dropdown-divider"></div>
-      <button class="dropdown-item" type="button">Companies</button>
-      <button class="dropdown-item" type="button">New Admin</button>
+      <button class="dropdown-item" type="button" *ngIf="auth.user.role.name == 'admin'">Пользователи</button>
+      <button class="dropdown-item" type="button"
+        routerLink="/employees" *ngIf="auth.user.role.name == 'admin'">Работники</button>
+      <button class="dropdown-item" type="button" *ngIf="auth.user.role.name == 'admin'">Администраторы</button>
+      <button class="dropdown-item" type="button" *ngIf="auth.user.role.name == 'employee'"
+              routerLink="/createroute" name="routes">Пути</button>
+      <button class="dropdown-item" type="button" *ngIf="auth.user.role.name == 'employee'"
+              routerLink="/tables" name="requests">Заявки</button>
+
+
       <div class="dropdown-divider"></div>
       <button class="dropdown-item" type="button" (click)="logOut()">Выйти</button>
     </div>
@@ -73,7 +75,7 @@
         <div class="container-fluid justify-content-center d-flex mb-3">
           <button type="submit" class="btn btn-primary col-6" (click)="onSubmit()">Войти</button>
         </div>
-        <p><a routerLink="/registration" data-dismiss="modal" >Еще не зарегестрированы? Пройдите быструю регистрацию</a> </p>
+        <button data-dismiss="modal" class="btn btn-link" (click)="register('client')">Еще не зарегестрированы? Пройдите быструю регистрацию</button>
       </div>
     </div>
   </div>
