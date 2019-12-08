@@ -16,6 +16,7 @@ import {RoleService} from "../../services/role.service";
 import {RouteService} from "../../services/route.service";
 import {TransportService} from "../../services/transport.service";
 import { EmployeesComponent } from './employees/employees.component';
+import { ErorComponent } from './eror/eror.component';
 
 
 
@@ -28,7 +29,8 @@ import { EmployeesComponent } from './employees/employees.component';
     CreaterouteComponent,
     TablesComponent,
     RegistrationComponent,
-    EmployeesComponent],
+    EmployeesComponent,
+    ErorComponent],
   imports: [
     CommonModule,
     SharedModule,
