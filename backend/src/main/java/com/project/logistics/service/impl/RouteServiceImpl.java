@@ -64,7 +64,10 @@ public class RouteServiceImpl implements RouteService {
                 time += segment.getDistance() / transport.getSpeed();
                 price += processPriceConfiguration(transport, time, newOrder);
             }
-
+            //if order value or weight > max value or weight of transport
+            if (price == 0) {
+                continue;
+            }
             AlternativeRoute alternativeRoute = new AlternativeRoute();
             alternativeRoute.setRoute(route);
             alternativeRoute.setSegments(segments);
