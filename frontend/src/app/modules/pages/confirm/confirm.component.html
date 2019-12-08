@@ -17,6 +17,10 @@
       <p>{{route.price}}$</p>
     </div>
   </div>
+
+  <div class="form-row justify-content-center">
+    <h4>Нет путей по которым можно доставить ваш груз!</h4>
+  </div>
   <div class="form-row">
     <div class="form-group col-md-6 offset-md-3">
       <hr>
@@ -25,7 +29,7 @@
 
   <!-- Button trigger modal -->
 
-  <div class="form-row">
+  <div class="form-row" *ngIf="alternativeRoutes == undefined">
     <div class="from-group col-md-2 offset-md-4">
       <button type="button" class="btn btn-primary col-8" data-toggle="modal" data-target="#modalPayment">Перейти к
         оплате
