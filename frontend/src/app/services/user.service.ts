@@ -19,7 +19,7 @@ export class UserService {
     return this.http.get<UserModel>("/api/user/profile/" + id);
   }
 
-  getAllEmployees(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>("/api/user/employees");
+  getAllByRoleId(id: string): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>("/api/user/role/" + id);
   }
 }

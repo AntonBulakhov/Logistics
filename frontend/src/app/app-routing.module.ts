@@ -9,6 +9,7 @@ import {TablesComponent} from "./modules/pages/tables/tables.component";
 import {RegistrationComponent} from "./modules/pages/registration/registration.component";
 import {EmployeesComponent} from "./modules/pages/employees/employees.component";
 import {ErorComponent} from "./modules/pages/eror/eror.component";
+import {CarriersComponent} from "./modules/pages/carriers/carriers.component";
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'tables', component: TablesComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'employees', component: EmployeesComponent},
+  {path: 'carriers', component: CarriersComponent},
   {path: 'error', component: ErorComponent}
 ];
 

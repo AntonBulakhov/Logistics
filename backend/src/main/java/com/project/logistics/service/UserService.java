@@ -10,5 +10,5 @@ public interface UserService {
     SafeUser getSafeUserByLogin(String login);
     UserEntity saveUser(UserEntity userEntity);
     UserEntity getUserById(Integer id);
-    List<SafeUser> getAllEmployees();
+    List<SafeUser> getAllByRoleId(Integer roleId);
 }

@@ -1,0 +1,33 @@
+<app-navigation></app-navigation>
+<form class="form-margin-top-bottom">
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Фамилия</th>
+      <th scope="col">Email</th>
+      <th scope="col">Статус</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let empl of carriers; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{empl.name}}</td>
+      <td>{{empl.surname}}</td>
+      <td>{{empl.email}}</td>
+      <td>{{empl.blocked ? 'Заблокирован' : 'Активен'}}</td>
+      <td>
+        <button class="btn btn-primary">Разблокировать</button>
+        <p class="btn btn-link pt-3">Заблокировать</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--  hidden for now-->
+  <nav aria-label="Page navigation example" class="mt-2 mb-5">
+    <button class="btn btn-primary" (click)="register('carrier')">Зарегестрировать перевозчика</button>
+  </nav>
+</form>
+<app-footer></app-footer>

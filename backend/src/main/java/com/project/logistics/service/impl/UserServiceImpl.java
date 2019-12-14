@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<SafeUser> getAllEmployees() {
-        RoleEntity roleEntity = roleRepository.findById(EMPLOYEE_ROLE_ID).get();
+    public List<SafeUser> getAllByRoleId(Integer roleId) {
+        RoleEntity roleEntity = roleRepository.findById(roleId).get();
         List<UserEntity> userEntities = userRepository.getAllByRole(roleEntity);
         return userConverter.convert(userEntities);
     }

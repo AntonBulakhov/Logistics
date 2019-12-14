@@ -31,9 +31,9 @@ public class UserController {
         return user;
     }
 
-    @GetMapping("/employees")
-    public List<SafeUser> getAllEmployees() {
-        return userService.getAllEmployees();
+    @GetMapping("/role/{id}")
+    public List<SafeUser> getAllEmployees(@PathVariable Integer id) {
+        return userService.getAllByRoleId(id);
     }
 
     @Autowired
