@@ -10,6 +10,7 @@ import {RegistrationComponent} from "./modules/pages/registration/registration.c
 import {EmployeesComponent} from "./modules/pages/employees/employees.component";
 import {ErorComponent} from "./modules/pages/eror/eror.component";
 import {CarriersComponent} from "./modules/pages/carriers/carriers.component";
+import {DeliveryComponent} from "./modules/pages/delivery/delivery.component";
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
   {path: 'employees', component: EmployeesComponent},
   {path: 'carriers', component: CarriersComponent},
-  {path: 'error', component: ErorComponent}
+  {path: 'error', component: ErorComponent},
+  {path: 'delivery', component: DeliveryComponent},
 ];
 
 @NgModule({

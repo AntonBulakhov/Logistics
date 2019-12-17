@@ -59,7 +59,7 @@
               [ngClass]="{ 'is-invalid': segmentExists}">
         <option *ngFor="let transport of transports" [ngValue]="transport">
           {{transport.transportType.name.charAt(0).toUpperCase()+
-          transport.transportType.name.slice(1)}}</option>
+          transport.transportType.name.slice(1)}} - {{transport.name}}</option>
       </select>
     </div>
     <div class="form-group col-md-6 offset-md-3">
@@ -92,7 +92,7 @@
       <label for="inputSegment{{num + 1}}">Отрезок {{num + 1}}</label>
       <select id="inputSegment{{num + 1}}" class="form-control" [(ngModel)]="segmentsToRoute[num]" name="segmentToRoute{{num}}">
         <option *ngFor="let segment of segments" [ngValue]="segment">
-          {{segment.startPoint.name}}-{{segment.endPoint.name}}</option>
+          {{segment.startPoint.name}}-{{segment.endPoint.name}} ({{segment.transport.name}})</option>
       </select>
     </div>
   </div>

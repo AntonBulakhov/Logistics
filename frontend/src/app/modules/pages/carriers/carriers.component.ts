@@ -25,7 +25,7 @@ export class CarriersComponent implements OnInit {
 
   register(role: string) {
     this.dataService.saveRoleName(role);
-    this.router.navigate(['/']);
+    this.router.navigate(['/registration']);
   }
 
 }

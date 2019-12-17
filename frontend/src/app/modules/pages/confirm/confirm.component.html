@@ -31,9 +31,7 @@
 
   <div class="form-row" *ngIf="alternativeRoutes != undefined">
     <div class="from-group col-md-2 offset-md-4">
-      <button type="button" class="btn btn-primary col-8" data-toggle="modal" data-target="#modalPayment">Перейти к
-        оплате
-      </button>
+      <button type="button" class="btn btn-primary col-8" (click)="onSelect()">Выбрать</button>
     </div>
   </div>
 

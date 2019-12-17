@@ -10,7 +10,7 @@ export class OrderModel {
   deliveryDate: string;
   user: UserModel;
   orderStatus: OrderstatusModel;
-  route: RouteModel;
+  route: RouteModel = new RouteModel();
 
   static cloneBase(order: OrderModel): OrderModel {
     const cloneOrdertModel: OrderModel = new OrderModel();

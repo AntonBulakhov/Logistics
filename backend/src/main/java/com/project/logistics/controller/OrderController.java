@@ -1,9 +1,11 @@
 package com.project.logistics.controller;
 
 import com.project.logistics.dto.AlternativeRoute;
+import com.project.logistics.dto.DeliveryDto;
 import com.project.logistics.dto.NewOrder;
 import com.project.logistics.dto.neworder.NewOrPaidOrder;
 import com.project.logistics.entity.OrderEntity;
+import com.project.logistics.entity.RouteEntity;
 import com.project.logistics.service.OrderService;
 import com.project.logistics.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,16 @@ public class OrderController {
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public List<OrderEntity> getOrdersByUserId(@PathVariable Integer id) {
         return orderService.getOrdersByUserId(id);
+    }
+
+    @PostMapping("/route")
+    public List<DeliveryDto> getOrdersByRoute(@RequestBody OrderEntity route) {
+        return orderService.getOrdersByRoute(route);
+    }
+
+    @PostMapping("/status")
+    public Boolean setOrderStatus(@RequestBody OrderEntity order) {
+        return orderService.setOrderStatus(order);
     }
 
     @Autowired

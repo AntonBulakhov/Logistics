@@ -18,6 +18,7 @@ import {TransportService} from "../../services/transport.service";
 import { EmployeesComponent } from './employees/employees.component';
 import { ErorComponent } from './eror/eror.component';
 import { CarriersComponent } from './carriers/carriers.component';
+import { DeliveryComponent } from './delivery/delivery.component';
 
 
 
@@ -32,7 +33,8 @@ import { CarriersComponent } from './carriers/carriers.component';
     RegistrationComponent,
     EmployeesComponent,
     ErorComponent,
-    CarriersComponent],
+    CarriersComponent,
+    DeliveryComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -54,10 +54,10 @@ export class ConfirmComponent implements OnInit {
     return this.alternativeRoutes.find(obj => obj.route.id == id);
   }
 
-  onPaid() {
+  onSelect() {
     this.order = this.newOrder.newOrder;
     this.order.route = this.selectedAlternativeRoute.route;
-    this.order.orderStatus = this.getPaidStatus();
+    this.order.orderStatus = this.getNewStatus();
     this.order.cost = this.selectedAlternativeRoute.price;
     this.order.user = this.auth.user;
 
@@ -69,8 +69,8 @@ export class ConfirmComponent implements OnInit {
     })
   }
 
-  public getPaidStatus(): OrderstatusModel {
-    return this.statuses.find(obj => obj.name == 'paid');
+  public getNewStatus(): OrderstatusModel {
+    return this.statuses.find(obj => obj.name == 'new');
   }
 
 }

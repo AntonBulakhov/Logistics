@@ -1,0 +1,63 @@
+<app-navigation></app-navigation>
+
+<div class="container-fluid pt-5">
+  <div class="container-fluid justify-content-center mt-5 mb-5" *ngIf="orders == undefined">
+    <div class="form-row">
+      <div class="form-group col-md-2 offset-md-3">
+        <p>Поиск заказов</p>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputFirstpoint">Начальная точнка</label>
+        <select id="inputFirstpoint" class="form-control" [(ngModel)]="route.route.startPoint" name="startPoint">
+          <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
+        </select>
+        <div *ngIf="isPointsSame" class="text-danger">Выберите две разные точки</div>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputSecondpoint">Конечная точка</label>
+        <select id="inputSecondpoint" class="form-control" [(ngModel)]="route.route.endPoint" name="endPoint">
+          <option *ngFor="let point of points" [ngValue]="point">{{point.name}}</option>
+        </select>
+        <div *ngIf="isPointsSame" class="text-danger">Выберите две разные точки</div>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputDataDelivery">Дата доставки</label>
+        <input type="date" id="inputDataDelivery" class="form-control" [(ngModel)]="route.deliveryDate" name="date">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-2 offset-md-3" >
+        <button type="submit" class="btn btn-primary col-6" (click)="searchOrders()">Поиск</button>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid justify-content-center mt-5 mb-5" *ngIf="orders != undefined">
+    <table class="table table-bordered table-hover" *ngFor="let delivery of orders">
+      <caption>Путь №{{delivery.routeId}}</caption>
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Пользователь</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Дата доставки</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of delivery.order; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{order.user.name}}</td>
+        <td>{{order.cost}}$</td>
+        <td>{{order.deliveryDate}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="confirmOrder(order)">Доставить груз</button>
+          <p class="btn btn-link pt-3" (click)="rejectOrder(order)">Отменить</p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-footer></app-footer>

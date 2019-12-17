@@ -59,15 +59,15 @@ public class RouteServiceImpl implements RouteService {
             List<SegmentEntity> segments = segmentService.getAllSegmentsByRouteId(route.getId());
             float price = 0;
             double time = 0;
+            if (!orderSuitsTransport(segments, newOrder)) {
+                continue;
+            }
             for (SegmentEntity segment : segments) {
                 TransportEntity transport = segment.getTransport();
                 time += segment.getDistance() / transport.getSpeed();
                 price += processPriceConfiguration(transport, time, newOrder);
             }
-            //if order value or weight > max value or weight of transport
-            if (price == 0) {
-                continue;
-            }
+
             AlternativeRoute alternativeRoute = new AlternativeRoute();
             alternativeRoute.setRoute(route);
             alternativeRoute.setSegments(segments);
@@ -83,14 +83,20 @@ public class RouteServiceImpl implements RouteService {
         return alternativeRoutes;
     }
 
-    protected float processPriceConfiguration(TransportEntity transportEntity, double time, NewOrder order) {
-        double occupiedValue = order.getNewOrder().getValue() / transportEntity.getMaxValue();
-        double occupiedWeight = order.getNewOrder().getWeight() / transportEntity.getMaxWeight();
-        if (occupiedWeight > 1 || occupiedValue > 1) {
-            return 0;
+    private boolean orderSuitsTransport(List<SegmentEntity> segments, NewOrder order) {
+        for (SegmentEntity segment : segments) {
+            TransportEntity transport = segment.getTransport();
+            if (order.getNewOrder().getWeight() > transport.getMaxWeight()) {
+                return false;
+            }
         }
-        double coefficient = (occupiedValue + occupiedWeight) / 2;
-        double price = coefficient * transportEntity.getCostPerHour() * time;
+        return true;
+    }
+
+    protected float processPriceConfiguration(TransportEntity transportEntity, double time, NewOrder order) {
+        double occupiedWeight = order.getNewOrder().getWeight() / transportEntity.getMaxWeight();
+
+        double price = occupiedWeight * transportEntity.getCostPerHour() * time;
 
         return price < MINIMAL_PRICE ? (float) MINIMAL_PRICE : (float) price;
     }
