@@ -18,7 +18,7 @@ public class StatusProcessor {
     private OrderRepository orderRepository;
     private OrderStatusRepository orderStatusRepository;
 
-    @Scheduled(cron = "0 0 * * *")
+    @Scheduled(cron = "0 0 * * * ?")
     public void changeStatus() {
         List<OrderEntity> orders = (List<OrderEntity>) orderRepository.findAll();
         long millis = System.currentTimeMillis();
