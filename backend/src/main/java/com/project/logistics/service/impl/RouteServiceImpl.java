@@ -19,6 +19,8 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.project.logistics.constants.TransportConstants.CAR_TYPE_ID;
+
 @Service
 public class RouteServiceImpl implements RouteService {
 
@@ -58,13 +60,13 @@ public class RouteServiceImpl implements RouteService {
         for (RouteEntity route : routes) {
             List<SegmentEntity> segments = segmentService.getAllSegmentsByRouteId(route.getId());
             float price = 0;
-            double time = 0;
+            int time = 0;
             if (!orderSuitsTransport(segments, newOrder)) {
                 continue;
             }
             for (SegmentEntity segment : segments) {
                 TransportEntity transport = segment.getTransport();
-                time += segment.getDistance() / transport.getSpeed();
+                time += processDeliveryTime(segment);
                 price += processPriceConfiguration(transport, time, newOrder);
             }
 
@@ -91,6 +93,21 @@ public class RouteServiceImpl implements RouteService {
             }
         }
         return true;
+    }
+
+    private int processDeliveryTime(SegmentEntity segmentEntity) {
+        TransportEntity transportEntity = segmentEntity.getTransport();
+        double time = 0;
+        BigDecimal deliveryDays;
+        if (transportEntity.getTransportType().getId() == CAR_TYPE_ID) {
+            time += segmentEntity.getDistance() / transportEntity.getSpeed();
+            deliveryDays = BigDecimal.valueOf(time % 8).setScale(0, RoundingMode.HALF_UP);
+        } else {
+            time += segmentEntity.getDistance() / transportEntity.getSpeed();
+            deliveryDays = BigDecimal.valueOf(time / 24).setScale(0, RoundingMode.HALF_UP);
+        }
+
+        return deliveryDays.intValue() + 1;
     }
 
     protected float processPriceConfiguration(TransportEntity transportEntity, double time, NewOrder order) {

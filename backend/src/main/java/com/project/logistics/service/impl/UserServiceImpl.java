@@ -78,6 +78,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.findById(id).get();
     }
 
+    @Override
+    public Boolean setUserStatus(UserEntity user) {
+        UserEntity entity = userRepository.findById(user.getId()).get();
+        entity.setBlocked(user.getBlocked());
+        return userRepository.save(entity).getBlocked() == user.getBlocked();
+    }
+
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
         UserEntity existingUser = userRepository.getByLogin(ADMIN_LOGIN);

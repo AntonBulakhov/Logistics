@@ -6,6 +6,7 @@ import com.project.logistics.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,11 @@ public class UserController {
     @GetMapping("/role/{id}")
     public List<SafeUser> getAllEmployees(@PathVariable Integer id) {
         return userService.getAllByRoleId(id);
+    }
+
+    @PostMapping("/status")
+    public Boolean setUserStatus(@RequestBody UserEntity user) {
+        return userService.setUserStatus(user);
     }
 
     @Autowired

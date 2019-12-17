@@ -28,4 +28,10 @@ export class CarriersComponent implements OnInit {
     this.router.navigate(['/registration']);
   }
 
+  setBlocked(toBlock: string, carrier: UserModel): void {
+    carrier.blocked = toBlock;
+    this.userService.setUserStatus(carrier).subscribe(value => {
+      this.ngOnInit();
+    });
+  }
 }

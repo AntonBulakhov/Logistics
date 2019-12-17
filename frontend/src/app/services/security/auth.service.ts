@@ -46,6 +46,8 @@ export class AuthService {
         sessionStorage.setItem("token", this.token);
         this.router.navigate(['']);
         setTimeout(location.reload.bind(location), 100);
+      }, error => {
+        this.authError = true;
       })
     }, error1 => {
       this.authError = true;

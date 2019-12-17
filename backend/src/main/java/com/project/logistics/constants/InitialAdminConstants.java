@@ -9,4 +9,6 @@ public interface InitialAdminConstants {
 
     Integer ADMIN_ROLE_ID = 1;
     Integer EMPLOYEE_ROLE_ID = 2;
+
+    Integer DELIVERED_ORDER_STATUS = 6;
 }

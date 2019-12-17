@@ -69,7 +69,11 @@ public class AuthenticationController {
 
     @GetMapping("/user")
     public ResponseEntity<SafeUser> authUser(Principal userInfo) {
-        return ResponseEntity.ok(userService.getSafeUserByLogin(userInfo.getName()));
+        SafeUser safeUser = userService.getSafeUserByLogin(userInfo.getName());
+        if (safeUser.getBlocked() == 1) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(safeUser);
     }
 
     @Autowired
