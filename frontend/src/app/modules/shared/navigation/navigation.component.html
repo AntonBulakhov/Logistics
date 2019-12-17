@@ -37,6 +37,8 @@
         *ngIf="auth.user.role.name == 'admin'">Перевозчики</button>
       <button class="dropdown-item" type="button"
         routerLink="/employees" *ngIf="auth.user.role.name == 'admin'">Работники</button>
+      <button class="dropdown-item" type="button"
+              routerLink="/tariff" *ngIf="auth.user.role.name == 'admin'">Управление ТС</button>
       <button class="dropdown-item" type="button" *ngIf="auth.user.role.name == 'employee'"
               routerLink="/createroute" name="routes">Пути</button>
       <button class="dropdown-item" type="button" *ngIf="auth.user.role.name == 'employee'"

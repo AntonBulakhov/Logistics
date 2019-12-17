@@ -36,7 +36,7 @@ export class CreaterouteComponent implements OnInit {
 
   constructor(private pointService: PointService,
               private segmentService: SegmentService,
-              private  transportService: TransportService,
+              private transportService: TransportService,
               private routeService: RouteService
   ) {
   }
