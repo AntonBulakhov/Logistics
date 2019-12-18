@@ -19,8 +19,8 @@
       <td>{{empl.email}}</td>
       <td>{{empl.blocked ? 'Заблокирован' : 'Активен'}}</td>
       <td>
-        <button class="btn btn-primary">Разблокировать</button>
-        <p class="btn btn-link pt-3">Заблокировать</p>
+        <button class="btn btn-primary" *ngIf="empl.blocked == '1'" (click)="setBlocked('0', empl)">Разблокировать</button>
+        <p class="btn btn-link pt-3" *ngIf="empl.blocked == '0'" (click)="setBlocked('1', empl)">Заблокировать</p>
       </td>
     </tr>
     </tbody>
