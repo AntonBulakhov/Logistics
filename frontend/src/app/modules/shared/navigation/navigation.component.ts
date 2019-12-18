@@ -35,4 +35,8 @@ export class NavigationComponent implements OnInit {
     this.dataService.saveRoleName(role);
     this.router.navigate(['/registration']);
   }
+
+  close() {
+    this.loginUser = new UserModel();
+  }
 }
