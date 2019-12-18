@@ -14,7 +14,6 @@
     <th scope="col">Максимальный объем (см3.)</th>
     <th scope="col">Максимальный вес (кг.)</th>
     <th scope="col">Скорость (км\ч.)</th>
-    <th scope="col">Коофициэнт</th>
     <th scope="col">Цена</th>
     <th scope="col"></th>
   </tr>
@@ -51,11 +50,6 @@
       </div>
     </td>
     <td>
-      <div class="form-group">
-        <input type="text" class="form-control" id="cooficient" autocomplete="off" name="tariff" [(ngModel)]="newTransport.coefficient">
-      </div>
-    </td>
-    <td>
       <input type="text" class="form-control" id="costperhour" autocomplete="off" name="tariff" [(ngModel)]="newTransport.costPerHour">
     </td>
     <td>
@@ -74,7 +68,6 @@
     <td>{{transport.maxValue}} см3.</td>
     <td>{{transport.maxWeight}} кг.</td>
     <td>{{transport.speed}} км\ч.</td>
-    <td>{{transport.coefficient}} </td>
     <td>{{transport.costPerHour}} $</td>
     <td></td>
   </tr>

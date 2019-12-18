@@ -77,8 +77,7 @@ public class RouteServiceImpl implements RouteService {
             BigDecimal priceBig = BigDecimal.valueOf(price).setScale(2, RoundingMode.CEILING);
             alternativeRoute.setPrice(priceBig.floatValue());
 
-            BigDecimal deliveryDays = BigDecimal.valueOf(time / 24).setScale(0, RoundingMode.HALF_UP);
-            alternativeRoute.setDeliveryTime(deliveryDays.intValue() + 1);
+            alternativeRoute.setDeliveryTime(time);
 
             alternativeRoutes.add(alternativeRoute);
         }
