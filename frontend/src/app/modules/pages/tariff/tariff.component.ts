@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TransportModel} from "../../../models/transport.model";
 import {TransportService} from "../../../services/transport.service";
+import {TransporttypeModel} from "../../../models/transporttype.model";
+import {AuthService} from "../../../services/security/auth.service";
+import {DataService} from "../../../services/data/data.service";
 
 @Component({
   selector: 'app-tariff',
@@ -9,23 +12,36 @@ import {TransportService} from "../../../services/transport.service";
 })
 export class TariffComponent implements OnInit {
 
-  public transports: TransportModel[];
+  public transports: TransportModel[] = [];
+  public transportTypes: TransporttypeModel[] = [];
 
-  public loaded: boolean = false;
+  public newTransport: TransportModel = new TransportModel();
 
-  constructor( private transportService: TransportService,
-  ) {
+  public transportTypeId: string;
 
-
+  constructor(private transportService: TransportService,
+              private auth: AuthService,
+              private dataService: DataService) {
   }
 
   ngOnInit() {
     this.loadData();
   }
+
   private loadData(): void {
-    this.transportService.getAllTransport().subscribe(data => {
+    this.transportTypeId = this.dataService.getTransportTypeId();
+    this.transportService.getTransportsByType(this.transportTypeId).subscribe(data => {
       this.transports = data as TransportModel[];
-      this.loaded = true;
     });
+    this.transportService.getAllTypes().subscribe(value => {
+      this.transportTypes = value as TransporttypeModel[];
+    });
+  }
+
+  createTransport(): void {
+    this.transportService.createTransport(this.newTransport).subscribe(value => {
+      this.ngOnInit();
+    });
+    this.newTransport = new TransportModel();
   }
 }

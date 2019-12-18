@@ -1,7 +1,9 @@
 <app-navigation></app-navigation>
 <form class="form-margin-top-bottom">
-<div class="container-fluid mt-3">
-  <h4>Транспортные тарифы</h4>
+<div class="container-fluid mt-3" [ngSwitch]="transportTypeId">
+  <h4 *ngSwitchCase="'1'">Транспортные тарифы кораблей</h4>
+  <h4 *ngSwitchCase="'2'">Транспортные тарифы автомобилей</h4>
+  <h4 *ngSwitchCase="'3'">Транспортные тарифы самолетов</h4>
 </div>
 <table class="table table-hover mt-3 mb-5">
   <thead>
@@ -9,69 +11,58 @@
     <th scope="col">#</th>
     <th scope="col">Название</th>
     <th scope="col">Тип транспорта</th>
-    <th scope="col">Максимальный объем</th>
-    <th scope="col">Максимальный вес</th>
-    <th scope="col">Цена за час</th>
+    <th scope="col">Максимальный объем (л.)</th>
+    <th scope="col">Максимальный вес (кг.)</th>
+    <th scope="col">Цена</th>
     <th scope="col"></th>
   </tr>
   </thead>
   <tbody>
-  <tr>
+
+  <tr *ngIf="auth.user != null && auth.user.role.name == 'carrier'">
     <th scope="row"></th>
     <td>
       <div class="form-group">
-        <input type="text" class="form-control" id="tariff" autocomplete="off" name="tariff" [(ngModel)]="newOffer.offer.name">
+        <input type="text" class="form-control" id="tariff" autocomplete="off" name="tariff" [(ngModel)]="newTransport.name">
       </div>
     </td>
     <td>
       <div class="form-group">
-        <select id="inputVihicletype" class="form-control" [(ngModel)]="segment.transport" name="transport">
-          <option *ngFor="let transport of transports" [ngValue]="transport">
-            {{transport.transportType.name.charAt(0).toUpperCase()+
-          transport.transportType.name.slice(1)}} - {{transport.name}}</option>
+        <select id="inputVihicletype" class="form-control" [(ngModel)]="newTransport.transportType" name="transport">
+          <option *ngFor="let type of transportTypes" [ngValue]="type">{{type.name}}</option>
         </select>
       </div>
     </td>
     <td>
       <div class="form-group">
-        <input type="text" class="form-control" id="maxvalue" autocomplete="off" name="tariff" [(ngModel)]="newOffer.offer.name">
+        <input type="text" class="form-control" id="maxvalue" autocomplete="off" name="tariff" [(ngModel)]="newTransport.maxValue">
       </div>
     </td>
     <td>
       <div class="form-group">
-        <input type="text" class="form-control" id="maxweight" autocomplete="off" name="tariff" [(ngModel)]="newOffer.offer.name">
+        <input type="text" class="form-control" id="maxweight" autocomplete="off" name="tariff" [(ngModel)]="newTransport.maxWeight">
       </div>
     </td>
     <td>
-      <input type="text" class="form-control" id="costperhour" autocomplete="off" name="tariff" [(ngModel)]="newOffer.offer.name">
+      <input type="text" class="form-control" id="costperhour" autocomplete="off" name="tariff" [(ngModel)]="newTransport.costPerHour">
     </td>
     <td>
-      <button class="btn btn-main" (click)="createOffer()">Создать</button>
+      <button class="btn btn-main" (click)="createTransport()">Создать</button>
     </td>
   </tr>
-  <tr *ngFor="let offer of offers, let i = index" [ngClass]="{'text-muted' : offer.offer.offerStatus.id == '2'}">
-    <th scope="row" [ngClass]="{'text-danger' : offer.offer.offerStatus.id == '2'}">{{i + 1}}</th>
-    <td [ngClass]="{'text-danger' : offer.offer.offerStatus.id == '2'}">{{offer.offer.name}}</td>
-    <td>
-      <p class="d-inline">{{offer.internetSpeed.value}}&nbsp;</p>
-      <p class="d-inline" *ngIf="offer.internetSpeed.valueMeasure.id != 4">{{offer.internetSpeed.valueMeasure.measurement}}</p>
+
+  <tr *ngFor="let transport of transports, let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{transport.name}}</td>
+    <td [ngSwitch]="transport.transportType.name">
+      <p *ngSwitchCase="'car'">Машина</p>
+      <p *ngSwitchCase="'ship'">Корабль</p>
+      <p *ngSwitchCase="'airplane'">Самолет</p>
     </td>
-    <td>
-      <ul>
-        <li>{{offer.internetEquipment1.value}}</li>
-        <li>{{offer.internetEquipment2.value}}</li>
-      </ul>
-    </td>
-    <td>{{offer.internetSoft1.value}}</td>
-    <td>{{offer.internetSoft2.value}}</td>
-    <td>{{offer.offer.description}}</td>
-    <td>{{offer.offer.price}} руб./мес.</td>
-    <td>
-      <button class="btn btn-main"
-              *ngIf="offer.offer.offerStatus.id == '2'" (click)="setOfferStatus(offer.offer.id, '1')">Разблокировать</button>
-      <button class="btn btn-link"
-              *ngIf="offer.offer.offerStatus.id == '1'" (click)="setOfferStatus(offer.offer.id, '2')">Заблокировать</button>
-    </td>
+    <td>{{transport.maxValue}} л.</td>
+    <td>{{transport.maxWeight}} кг.</td>
+    <td>{{transport.costPerHour}} $</td>
+    <td></td>
   </tr>
   </tbody>
 </table>

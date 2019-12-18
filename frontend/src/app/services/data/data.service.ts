@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {OrderModel} from "../../models/order.model";
-import {Observable} from "rxjs";
 import {NewOrderModel} from "../../models/dto/newOrder.model";
 
 @Injectable({
@@ -25,5 +23,13 @@ export class DataService {
 
   getRoleName(): string {
     return JSON.parse(localStorage.getItem('role_name'))
+  }
+
+  saveTransportTypeId(id: string) {
+    localStorage.setItem('transport_type_id', id);
+  }
+
+  getTransportTypeId(): string {
+    return  JSON.parse(localStorage.getItem('transport_type_id'));
   }
 }
