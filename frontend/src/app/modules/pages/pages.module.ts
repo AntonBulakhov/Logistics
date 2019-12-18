@@ -19,6 +19,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { ErorComponent } from './eror/eror.component';
 import { CarriersComponent } from './carriers/carriers.component';
 import { DeliveryComponent } from './delivery/delivery.component';
+import { TariffComponent } from './tariff/tariff.component';
 
 
 
@@ -34,7 +35,8 @@ import { DeliveryComponent } from './delivery/delivery.component';
     EmployeesComponent,
     ErorComponent,
     CarriersComponent,
-    DeliveryComponent],
+    DeliveryComponent,
+    TariffComponent],
   imports: [
     CommonModule,
     SharedModule,

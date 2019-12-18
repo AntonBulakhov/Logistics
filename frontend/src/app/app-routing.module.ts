@@ -11,6 +11,7 @@ import {EmployeesComponent} from "./modules/pages/employees/employees.component"
 import {ErorComponent} from "./modules/pages/eror/eror.component";
 import {CarriersComponent} from "./modules/pages/carriers/carriers.component";
 import {DeliveryComponent} from "./modules/pages/delivery/delivery.component";
+import {TariffComponent} from "./modules/pages/tariff/tariff.component";
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'carriers', component: CarriersComponent},
   {path: 'error', component: ErorComponent},
   {path: 'delivery', component: DeliveryComponent},
+  {path: 'tariff', component: TariffComponent}
 ];
 
 @NgModule({
