@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<NewOrPaidOrder> getNewOrPaidOrders() {
-        List<OrderStatusEntity> statuses = orderStatusRepository.getAllByNameIn(Arrays.asList(NEW_ORDER, PAID_ORDER));
+        List<OrderStatusEntity> statuses = orderStatusRepository.getAllByNameIn(Arrays.asList(NEW_ORDER));
         List<OrderEntity> entities = orderRepository.getAllByOrderStatusIn(statuses);
         return toNewOrPaidOrderConverter.convert(entities);
     }
