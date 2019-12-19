@@ -67,7 +67,7 @@ public class RouteServiceImpl implements RouteService {
             for (SegmentEntity segment : segments) {
                 TransportEntity transport = segment.getTransport();
                 time += processDeliveryTime(segment);
-                price += processPriceConfiguration(transport, time, newOrder);
+                price += processPriceConfiguration(transport, segment, newOrder);
             }
 
             AlternativeRoute alternativeRoute = new AlternativeRoute();
@@ -109,10 +109,11 @@ public class RouteServiceImpl implements RouteService {
         return deliveryDays.intValue() + 1;
     }
 
-    protected float processPriceConfiguration(TransportEntity transportEntity, double time, NewOrder order) {
-        double occupiedWeight = order.getNewOrder().getWeight() / transportEntity.getMaxWeight();
+    protected float processPriceConfiguration(TransportEntity transportEntity, SegmentEntity segmentEntity, NewOrder order) {
 
-        double price = occupiedWeight * transportEntity.getCostPerHour() * time;
+        double time = segmentEntity.getDistance() / segmentEntity.getTransport().getSpeed();
+
+        double price = transportEntity.getCostPerHour() * time;
 
         return price < MINIMAL_PRICE ? (float) MINIMAL_PRICE : (float) price;
     }
