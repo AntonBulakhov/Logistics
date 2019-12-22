@@ -1,6 +1,7 @@
 import {RouteModel} from "./route.model";
 import {UserModel} from "./user.model";
 import {OrderstatusModel} from "./orderstatus.model";
+import {OrderTypeModel} from "./ordertype.model";
 
 export class OrderModel {
   id: string;
@@ -10,6 +11,7 @@ export class OrderModel {
   deliveryDate: string;
   user: UserModel;
   orderStatus: OrderstatusModel;
+  orderType: OrderTypeModel;
   route: RouteModel = new RouteModel();
 
   static cloneBase(order: OrderModel): OrderModel {
@@ -21,6 +23,7 @@ export class OrderModel {
     cloneOrdertModel.user = order.user;
     cloneOrdertModel.orderStatus = order.orderStatus;
     cloneOrdertModel.route = order.route;
+    cloneOrdertModel.orderType = order.orderType;
     return cloneOrdertModel;
   }
 }

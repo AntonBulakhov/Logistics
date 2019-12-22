@@ -4,6 +4,7 @@ import {OrderModel} from "../models/order.model";
 import {Observable} from "rxjs";
 import {RouteModel} from "../models/route.model";
 import {DeliveryModel} from "../models/dto/delivery.model";
+import {OrderTypeModel} from "../models/ordertype.model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class OrderService {
 
   setOrdersStatus(order: OrderModel): Observable<boolean> {
     return this.http.post<boolean>("/api/order/status", order);
+  }
+
+  getAllTypes(): Observable<OrderTypeModel[]> {
+    return this.http.get<OrderTypeModel[]>("/api/order/type");
   }
 }

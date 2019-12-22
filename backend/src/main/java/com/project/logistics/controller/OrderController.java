@@ -5,7 +5,7 @@ import com.project.logistics.dto.DeliveryDto;
 import com.project.logistics.dto.NewOrder;
 import com.project.logistics.dto.neworder.NewOrPaidOrder;
 import com.project.logistics.entity.OrderEntity;
-import com.project.logistics.entity.RouteEntity;
+import com.project.logistics.entity.OrderTypeEntity;
 import com.project.logistics.service.OrderService;
 import com.project.logistics.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +54,11 @@ public class OrderController {
     @PostMapping("/status")
     public Boolean setOrderStatus(@RequestBody OrderEntity order) {
         return orderService.setOrderStatus(order);
+    }
+
+    @GetMapping("/type")
+    public List<OrderTypeEntity> getAllTypes() {
+        return orderService.getAllTypes();
     }
 
     @Autowired

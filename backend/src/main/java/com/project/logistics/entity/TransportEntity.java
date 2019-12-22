@@ -16,7 +16,6 @@ public class TransportEntity {
     private double speed;
     private double maxValue;
     private double maxWeight;
-    private double coefficient;
     private double costPerHour;
     private TransportTypeEntity transportType;
 
@@ -71,16 +70,6 @@ public class TransportEntity {
     }
 
     @Basic
-    @Column(name = "coefficient")
-    public double getCoefficient() {
-        return coefficient;
-    }
-
-    public void setCoefficient(double coefficient) {
-        this.coefficient = coefficient;
-    }
-
-    @Basic
     @Column(name = "cost_per_hour")
     public double getCostPerHour() {
         return costPerHour;
@@ -101,7 +90,6 @@ public class TransportEntity {
         if (Double.compare(that.speed, speed) != 0) return false;
         if (Double.compare(that.maxValue, maxValue) != 0) return false;
         if (Double.compare(that.maxWeight, maxWeight) != 0) return false;
-        if (Double.compare(that.coefficient, coefficient) != 0) return false;
         if (Double.compare(that.costPerHour, costPerHour) != 0) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
@@ -119,8 +107,6 @@ public class TransportEntity {
         temp = Double.doubleToLongBits(maxValue);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(maxWeight);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(coefficient);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(costPerHour);
         result = 31 * result + (int) (temp ^ (temp >>> 32));

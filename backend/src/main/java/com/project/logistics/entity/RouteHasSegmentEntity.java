@@ -38,10 +38,10 @@ public class RouteHasSegmentEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RouteHasSegmentEntity that = (RouteHasSegmentEntity) o;
+        RouteHasSegmentEntity entity = (RouteHasSegmentEntity) o;
 
-        if (routeId != that.routeId) return false;
-        if (segmentId != that.segmentId) return false;
+        if (routeId != entity.routeId) return false;
+        if (segmentId != entity.segmentId) return false;
 
         return true;
     }

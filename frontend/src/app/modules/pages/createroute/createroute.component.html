@@ -62,6 +62,11 @@
           transport.transportType.name.slice(1)}} - {{transport.name}}</option>
       </select>
     </div>
+    <div class="form-group col-md-2">
+      <label for="segmentCost">Пошлина</label>
+      <input type="text" class="form-control" id="segmentCost" placeholder="Пошлина"
+             [(ngModel)]="segment.cost" name="distance" autocomplete="off">
+    </div>
     <div class="form-group col-md-6 offset-md-3">
       <div *ngIf="segmentExists" class="text-danger">Все поля должны быть заполнены</div>
     </div>

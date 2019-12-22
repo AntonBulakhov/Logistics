@@ -3,7 +3,7 @@ package com.project.logistics.service;
 import com.project.logistics.dto.DeliveryDto;
 import com.project.logistics.dto.neworder.NewOrPaidOrder;
 import com.project.logistics.entity.OrderEntity;
-import com.project.logistics.entity.RouteEntity;
+import com.project.logistics.entity.OrderTypeEntity;
 
 import java.util.List;
 
@@ -17,4 +17,6 @@ public interface OrderService {
     List<DeliveryDto> getOrdersByRoute(OrderEntity route);
 
     Boolean setOrderStatus(OrderEntity order);
+
+    List<OrderTypeEntity> getAllTypes();
 }

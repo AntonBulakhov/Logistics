@@ -1,7 +1,6 @@
 package com.project.logistics.entity;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,13 +10,14 @@ import javax.persistence.Table;
 import java.sql.Date;
 
 @Entity
-@Table(name = "`order`", schema = "logisticsdb", catalog = "")
+@Table(name = "order", schema = "logisticsdb", catalog = "")
 public class OrderEntity {
     private int id;
     private double weight;
     private double value;
     private double cost;
     private Date deliveryDate;
+    private OrderTypeEntity orderType;
     private RouteEntity route;
     private UserEntity user;
     private OrderStatusEntity orderStatus;
@@ -77,13 +77,14 @@ public class OrderEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrderEntity that = (OrderEntity) o;
+        OrderEntity entity = (OrderEntity) o;
 
-        if (id != that.id) return false;
-        if (Double.compare(that.weight, weight) != 0) return false;
-        if (Double.compare(that.value, value) != 0) return false;
-        if (Double.compare(that.cost, cost) != 0) return false;
-        if (deliveryDate != null ? !deliveryDate.equals(that.deliveryDate) : that.deliveryDate != null) return false;
+        if (id != entity.id) return false;
+        if (Double.compare(entity.weight, weight) != 0) return false;
+        if (Double.compare(entity.value, value) != 0) return false;
+        if (Double.compare(entity.cost, cost) != 0) return false;
+        if (deliveryDate != null ? !deliveryDate.equals(entity.deliveryDate) : entity.deliveryDate != null)
+            return false;
 
         return true;
     }
@@ -104,6 +105,16 @@ public class OrderEntity {
     }
 
     @ManyToOne
+    @JoinColumn(name = "order_type_id", referencedColumnName = "id", nullable = false)
+    public OrderTypeEntity getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(OrderTypeEntity orderType) {
+        this.orderType = orderType;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "route_id", referencedColumnName = "id", nullable = false)
     public RouteEntity getRoute() {
         return route;
@@ -113,7 +124,7 @@ public class OrderEntity {
         this.route = route;
     }
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     public UserEntity getUser() {
         return user;

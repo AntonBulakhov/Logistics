@@ -28,7 +28,6 @@ import static com.project.logistics.constants.InitialAdminConstants.ADMIN_NAME;
 import static com.project.logistics.constants.InitialAdminConstants.ADMIN_PASSWORD;
 import static com.project.logistics.constants.InitialAdminConstants.ADMIN_ROLE_ID;
 import static com.project.logistics.constants.InitialAdminConstants.ADMIN_SURNAME;
-import static com.project.logistics.constants.InitialAdminConstants.EMPLOYEE_ROLE_ID;
 
 @Service("customUserDetailsService")
 public class UserServiceImpl implements UserService, UserDetailsService {

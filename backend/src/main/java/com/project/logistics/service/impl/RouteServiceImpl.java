@@ -3,6 +3,7 @@ package com.project.logistics.service.impl;
 import com.project.logistics.dto.AlternativeRoute;
 import com.project.logistics.dto.NewOrder;
 import com.project.logistics.dto.NewRouteDto;
+import com.project.logistics.entity.OrderEntity;
 import com.project.logistics.entity.RouteEntity;
 import com.project.logistics.entity.RouteHasSegmentEntity;
 import com.project.logistics.entity.SegmentEntity;
@@ -66,8 +67,9 @@ public class RouteServiceImpl implements RouteService {
             }
             for (SegmentEntity segment : segments) {
                 TransportEntity transport = segment.getTransport();
-                time += processDeliveryTime(segment);
-                price += processPriceConfiguration(transport, segment, newOrder);
+                double days = processDeliveryTime(segment);
+                time += days;
+                price += processPriceConfiguration(transport, segment, newOrder, days);
             }
 
             AlternativeRoute alternativeRoute = new AlternativeRoute();
@@ -100,20 +102,23 @@ public class RouteServiceImpl implements RouteService {
         BigDecimal deliveryDays;
         if (transportEntity.getTransportType().getId() == CAR_TYPE_ID) {
             time += segmentEntity.getDistance() / transportEntity.getSpeed();
-            deliveryDays = BigDecimal.valueOf(time % 8).setScale(0, RoundingMode.HALF_UP);
+            deliveryDays = BigDecimal.valueOf(time / 8).setScale(0, RoundingMode.HALF_UP);
         } else {
             time += segmentEntity.getDistance() / transportEntity.getSpeed();
             deliveryDays = BigDecimal.valueOf(time / 24).setScale(0, RoundingMode.HALF_UP);
         }
 
-        return deliveryDays.intValue() + 1;
+        return Math.max(deliveryDays.intValue(), 1);
     }
 
-    protected float processPriceConfiguration(TransportEntity transportEntity, SegmentEntity segmentEntity, NewOrder order) {
+    protected float processPriceConfiguration(TransportEntity transportEntity, SegmentEntity segmentEntity, NewOrder order, double days) {
+        double coefficient = order.getNewOrder().getWeight() / transportEntity.getMaxWeight();
 
-        double time = segmentEntity.getDistance() / segmentEntity.getTransport().getSpeed();
+        OrderEntity orderEntity = order.getNewOrder();
+        double price = transportEntity.getCostPerHour() * coefficient
+                * days * orderEntity.getOrderType().getCoefficient();
 
-        double price = transportEntity.getCostPerHour() * time;
+        price += segmentEntity.getCost();
 
         return price < MINIMAL_PRICE ? (float) MINIMAL_PRICE : (float) price;
     }

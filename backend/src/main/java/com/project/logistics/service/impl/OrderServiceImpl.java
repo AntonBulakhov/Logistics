@@ -6,6 +6,7 @@ import com.project.logistics.dto.DeliveryDto;
 import com.project.logistics.dto.neworder.NewOrPaidOrder;
 import com.project.logistics.entity.OrderEntity;
 import com.project.logistics.entity.OrderStatusEntity;
+import com.project.logistics.entity.OrderTypeEntity;
 import com.project.logistics.entity.RouteEntity;
 import com.project.logistics.entity.RouteHasSegmentEntity;
 import com.project.logistics.entity.SegmentEntity;
@@ -13,6 +14,7 @@ import com.project.logistics.entity.TransportEntity;
 import com.project.logistics.entity.UserEntity;
 import com.project.logistics.repository.OrderRepository;
 import com.project.logistics.repository.OrderStatusRepository;
+import com.project.logistics.repository.OrderTypeRepository;
 import com.project.logistics.repository.RouteHasSegmentRepository;
 import com.project.logistics.repository.RouteRepository;
 import com.project.logistics.repository.SegmentRepository;
@@ -41,6 +43,7 @@ public class OrderServiceImpl implements OrderService {
     private RouteRepository routeRepository;
     private RouteHasSegmentRepository routeHasSegmentRepository;
     private SegmentRepository segmentRepository;
+    private OrderTypeRepository orderTypeRepository;
 
     private OrderToNewOrPaidOrderConverter toNewOrPaidOrderConverter;
 
@@ -140,6 +143,11 @@ public class OrderServiceImpl implements OrderService {
         return entity.getOrderStatus().getId() == order.getOrderStatus().getId();
     }
 
+    @Override
+    public List<OrderTypeEntity> getAllTypes() {
+        return (List<OrderTypeEntity>) orderTypeRepository.findAll();
+    }
+
     @Autowired
     public void setOrderRepository(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
@@ -173,5 +181,10 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     public void setToNewOrPaidOrderConverter(OrderToNewOrPaidOrderConverter toNewOrPaidOrderConverter) {
         this.toNewOrPaidOrderConverter = toNewOrPaidOrderConverter;
+    }
+
+    @Autowired
+    public void setOrderTypeRepository(OrderTypeRepository orderTypeRepository) {
+        this.orderTypeRepository = orderTypeRepository;
     }
 }

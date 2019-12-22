@@ -20,6 +20,7 @@ import { ErorComponent } from './eror/eror.component';
 import { CarriersComponent } from './carriers/carriers.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { TariffComponent } from './tariff/tariff.component';
+import { TransportComponent } from './transport/transport.component';
 
 
 
@@ -36,7 +37,8 @@ import { TariffComponent } from './tariff/tariff.component';
     ErorComponent,
     CarriersComponent,
     DeliveryComponent,
-    TariffComponent],
+    TariffComponent,
+    TransportComponent],
   imports: [
     CommonModule,
     SharedModule,

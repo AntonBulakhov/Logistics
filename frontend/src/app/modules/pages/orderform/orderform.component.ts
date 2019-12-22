@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {NewOrderModel} from "../../../models/dto/newOrder.model";
 import {OrderstatusService} from "../../../services/orderstatus.service";
 import {OrderstatusModel} from "../../../models/orderstatus.model";
+import {OrderTypeModel} from "../../../models/ordertype.model";
 
 @Component({
   selector: 'app-orderform',
@@ -23,8 +24,10 @@ export class OrderformComponent implements OnInit {
   public length: number;
   public startPoint: PointModel;
   public endPoint: PointModel;
+  public orderType: OrderTypeModel = new OrderTypeModel();
 
-  public statuses: OrderstatusModel[];
+  public statuses: OrderstatusModel[] = [];
+  public types: OrderTypeModel[] = [];
 
   public points: PointModel[];
 
@@ -33,7 +36,8 @@ export class OrderformComponent implements OnInit {
   constructor(private pointService: PointService,
               private dataService: DataService,
               private router: Router,
-              private statusService: OrderstatusService) {
+              private statusService: OrderstatusService,
+              private orderService: OrderService) {
   }
 
   ngOnInit() {
@@ -42,6 +46,9 @@ export class OrderformComponent implements OnInit {
     });
     this.statusService.getAllStatuses().subscribe(value => {
       this.statuses = value as OrderstatusModel[];
+    });
+    this.orderService.getAllTypes().subscribe(value => {
+      this.types = value as OrderTypeModel[];
     });
   }
 
@@ -57,6 +64,7 @@ export class OrderformComponent implements OnInit {
     newOrder.startPoint = this.startPoint;
     newOrder.endPoint = this.endPoint;
     newOrder.newOrder.orderStatus = this.getNewStatus();
+    newOrder.newOrder.orderType = this.orderType;
     this.dataService.saveOrder(newOrder);
     this.router.navigate(['/confirm']);
   }

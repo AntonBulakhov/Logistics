@@ -25,10 +25,6 @@ public class SegmentServiceImpl implements SegmentService {
             return null;
         }
         if (!entity.getStartPoint().equals(entity.getEndPoint())) {
-            TransportEntity transportEntity = entity.getTransport();
-            double cost = (entity.getDistance() / transportEntity.getSpeed())
-                    * transportEntity.getCostPerHour();
-            entity.setCost(cost);
             return segmentRepository.save(entity);
         } else {
             return null;
