@@ -12,6 +12,8 @@ import {ErorComponent} from "./modules/pages/eror/eror.component";
 import {CarriersComponent} from "./modules/pages/carriers/carriers.component";
 import {DeliveryComponent} from "./modules/pages/delivery/delivery.component";
 import {TariffComponent} from "./modules/pages/tariff/tariff.component";
+import {TransportComponent} from "./modules/pages/transport/transport.component";
+import {CoeffComponent} from "./modules/pages/coeff/coeff.component";
 
 
 const routes: Routes = [
@@ -26,7 +28,9 @@ const routes: Routes = [
   {path: 'carriers', component: CarriersComponent},
   {path: 'error', component: ErorComponent},
   {path: 'delivery', component: DeliveryComponent},
-  {path: 'tariff', component: TariffComponent}
+  {path: 'tariff', component: TariffComponent},
+  {path: 'transport', component: TransportComponent},
+  {path: 'coeff', component: CoeffComponent}
 ];
 
 @NgModule({

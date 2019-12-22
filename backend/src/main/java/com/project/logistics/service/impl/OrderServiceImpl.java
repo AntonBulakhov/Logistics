@@ -148,6 +148,11 @@ public class OrderServiceImpl implements OrderService {
         return (List<OrderTypeEntity>) orderTypeRepository.findAll();
     }
 
+    @Override
+    public Boolean saveOrderType(OrderTypeEntity order) {
+        return orderTypeRepository.save(order) != null;
+    }
+
     @Autowired
     public void setOrderRepository(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;

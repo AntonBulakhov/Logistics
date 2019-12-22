@@ -1,5 +1,6 @@
 package com.project.logistics.controller;
 
+import com.project.logistics.dto.NewTransport;
 import com.project.logistics.entity.TransportEntity;
 import com.project.logistics.entity.TransportTypeEntity;
 import com.project.logistics.service.TransportService;
@@ -35,7 +36,7 @@ public class TransportController {
     }
 
     @PostMapping()
-    public Boolean saveTransport(@RequestBody TransportEntity transportEntity) {
+    public Boolean saveTransport(@RequestBody NewTransport transportEntity) {
         return transportService.saveTransport(transportEntity);
     }
 

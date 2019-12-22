@@ -2,6 +2,7 @@ package com.project.logistics.dto.neworder;
 
 import com.project.logistics.dto.SafeUser;
 import com.project.logistics.entity.OrderStatusEntity;
+import com.project.logistics.entity.OrderTypeEntity;
 import com.project.logistics.entity.RouteEntity;
 
 import java.sql.Date;
@@ -15,6 +16,7 @@ public class NewOrPaidOrder {
     private RouteEntity route;
     private SafeUser user;
     private OrderStatusEntity orderStatus;
+    private OrderTypeEntity orderType;
 
     public int getId() {
         return id;
@@ -78,5 +80,13 @@ public class NewOrPaidOrder {
 
     public void setOrderStatus(OrderStatusEntity orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public OrderTypeEntity getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(OrderTypeEntity orderType) {
+        this.orderType = orderType;
     }
 }

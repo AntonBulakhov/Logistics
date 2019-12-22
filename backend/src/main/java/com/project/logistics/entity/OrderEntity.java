@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import java.sql.Date;
 
 @Entity
-@Table(name = "order", schema = "logisticsdb", catalog = "")
+@Table(name = "`order`", schema = "logisticsdb", catalog = "")
 public class OrderEntity {
     private int id;
     private double weight;

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TransportModel} from "../models/transport.model";
 import {TransporttypeModel} from "../models/transporttype.model";
+import {NewTransportModel} from "../models/dto/newtransport.model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class TransportService {
     return this.http.get<TransporttypeModel[]>("/api/transport/types");
   }
 
-  createTransport(transport: TransportModel): Observable<boolean> {
+  createTransport(transport: NewTransportModel): Observable<boolean> {
     return this.http.post<boolean>("/api/transport", transport);
   }
 }

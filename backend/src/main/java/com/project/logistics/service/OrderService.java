@@ -19,4 +19,6 @@ public interface OrderService {
     Boolean setOrderStatus(OrderEntity order);
 
     List<OrderTypeEntity> getAllTypes();
+
+    Boolean saveOrderType(OrderTypeEntity order);
 }

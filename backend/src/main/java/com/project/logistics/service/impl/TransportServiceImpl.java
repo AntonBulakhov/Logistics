@@ -1,5 +1,6 @@
 package com.project.logistics.service.impl;
 
+import com.project.logistics.dto.NewTransport;
 import com.project.logistics.entity.TransportEntity;
 import com.project.logistics.entity.TransportTypeEntity;
 import com.project.logistics.repository.TransportRepository;
@@ -15,6 +16,8 @@ public class TransportServiceImpl implements TransportService {
 
     private TransportRepository repository;
     private TransportTypeRepository transportTypeRepository;
+
+    private static final double COEFFICIENT = 1.5;
 
     @Override
     public List<TransportEntity> getAllTransports() {
@@ -33,12 +36,19 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
-    public Boolean saveTransport(TransportEntity transportEntity) {
-        TransportEntity transport = repository.findByName(transportEntity.getName());
+    public Boolean saveTransport(NewTransport transportEntity) {
+        TransportEntity transport = repository.findByName(transportEntity.getTransport().getName());
         if (transport != null) {
             return false;
         }
-        return repository.save(transportEntity) != null;
+        transport = transportEntity.getTransport();
+
+        double cost = transportEntity.getOil() + transportEntity.getFuel() + transportEntity.getRepair()
+                + transportEntity.getTech() + transportEntity.getTires();
+
+        transport.setCostPerHour(cost * COEFFICIENT);
+
+        return repository.save(transport) != null;
     }
 
     @Autowired

@@ -21,6 +21,7 @@ import { CarriersComponent } from './carriers/carriers.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { TariffComponent } from './tariff/tariff.component';
 import { TransportComponent } from './transport/transport.component';
+import { CoeffComponent } from './coeff/coeff.component';
 
 
 
@@ -38,7 +39,8 @@ import { TransportComponent } from './transport/transport.component';
     CarriersComponent,
     DeliveryComponent,
     TariffComponent,
-    TransportComponent],
+    TransportComponent,
+    CoeffComponent],
   imports: [
     CommonModule,
     SharedModule,

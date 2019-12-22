@@ -61,6 +61,11 @@ public class OrderController {
         return orderService.getAllTypes();
     }
 
+    @PostMapping("/type")
+    public Boolean saveOrderType(@RequestBody OrderTypeEntity order) {
+        return orderService.saveOrderType(order);
+    }
+
     @Autowired
     public void setRouteService(RouteService routeService) {
         this.routeService = routeService;

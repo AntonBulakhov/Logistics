@@ -36,9 +36,11 @@
       <button class="dropdown-item" type="button"  routerLink="/carriers"
         *ngIf="auth.user.role.name == 'admin'">Перевозчики</button>
       <button class="dropdown-item" type="button"
-        routerLink="/employees" *ngIf="auth.user.role.name == 'admin'">Работники</button>
+              routerLink="/employees" *ngIf="auth.user.role.name == 'admin'">Работники</button>
       <button class="dropdown-item" type="button"
-              routerLink="/tariff" *ngIf="auth.user.role.name == 'admin'">Управление ТС</button>
+              routerLink="/coeff" *ngIf="auth.user.role.name == 'admin'">Коэффициенты</button>
+      <button class="dropdown-item" type="button"
+              routerLink="/transport" *ngIf="auth.user.role.name == 'employee'">Создание ТС</button>
       <button class="dropdown-item" type="button" *ngIf="auth.user.role.name == 'employee'"
               routerLink="/createroute" name="routes">Пути</button>
       <button class="dropdown-item" type="button" *ngIf="auth.user.role.name == 'employee'"

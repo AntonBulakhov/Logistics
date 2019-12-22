@@ -37,4 +37,8 @@ export class OrderService {
   getAllTypes(): Observable<OrderTypeModel[]> {
     return this.http.get<OrderTypeModel[]>("/api/order/type");
   }
+
+  saveOrderType(co: OrderTypeModel): Observable<boolean> {
+    return this.http.post<boolean>("/api/order/type", co);
+  }
 }

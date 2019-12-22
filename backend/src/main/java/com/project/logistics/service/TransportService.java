@@ -1,5 +1,6 @@
 package com.project.logistics.service;
 
+import com.project.logistics.dto.NewTransport;
 import com.project.logistics.entity.TransportEntity;
 import com.project.logistics.entity.TransportTypeEntity;
 
@@ -12,5 +13,5 @@ public interface TransportService {
 
     List<TransportTypeEntity> getAllTypes();
 
-    Boolean saveTransport(TransportEntity transportEntity);
+    Boolean saveTransport(NewTransport transportEntity);
 }

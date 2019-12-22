@@ -1,1 +1,81 @@
-<p>transport works!</p>
+<app-navigation></app-navigation>
+
+<div class="container-fluid mt-5">
+  <form class="form-margin-top-bottom" (submit)="onSubmit()">
+    <div class="form-row justify-content-center" >
+      <div class="form-group col-md-2">
+        <label for="repair">Цена ремонта ($)</label>
+        <input type="text" name="repair" id="repair" class="form-control input-sm"
+               [(ngModel)]="newTransport.repair" placeholder="Цена ремонта" autocomplete="off">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="tires">Цена замены шин ($)</label>
+        <input type="text" name="tires" id="tires" class="form-control input-sm"
+               [(ngModel)]="newTransport.tires" placeholder="Цена замены шин" autocomplete="off">
+      </div>
+
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-2">
+        <label for="fuel">Топливо ($)</label>
+        <input type="text" name="fuel" id="fuel" class="form-control input-sm"
+               [(ngModel)]="newTransport.fuel" placeholder="Топливо" autocomplete="off">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="oil">Смазочные материалы ($)</label>
+        <input type="text" name="oil" id="oil" class="form-control input-sm"
+               [(ngModel)]="newTransport.oil" placeholder="Смазочные материалы" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-2">
+        <label for="tech">Тех. обслуживание ($)</label>
+        <input type="text" name="tech" id="tech" class="form-control input-sm"
+               [(ngModel)]="newTransport.tech" placeholder="Тех. обслуживание" autocomplete="off">
+      </div>
+    </div>
+
+
+
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-2">
+        <label for="trName">Название транспорта</label>
+        <input type="text" class="form-control" id="trName" autocomplete="off" name="tariff" [(ngModel)]="newTransport.transport.name">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputVihicletype">Тип транспорта</label>
+        <select id="inputVihicletype" class="form-control" [(ngModel)]="newTransport.transport.transportType" name="transport">
+          <option *ngFor="let type of transportTypes" [ngValue]="type">{{type.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-2">
+        <label for="maxvalue">Максимальная вместимость (см3.)</label>
+        <input type="text" class="form-control" id="maxvalue" autocomplete="off" name="tariff" [(ngModel)]="newTransport.transport.maxValue">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="maxweight">Максимальная грузоподъемность (кг.)</label>
+        <input type="text" class="form-control" id="maxweight" autocomplete="off" name="tariff" [(ngModel)]="newTransport.transport.maxWeight">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="speed">Скорость транспорта (км/ч)</label>
+        <input type="text" class="form-control" id="speed" autocomplete="off" name="tariff" [(ngModel)]="newTransport.transport.speed">
+      </div>
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-6">
+        <hr>
+      </div>
+    </div>
+    <div class="form-row justify-content-center mb-5">
+      <div class="from-group col-md-6 justify-content-center d-flex">
+        <button type="submit" class="btn btn-primary col-5">Создать ТС</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<app-footer></app-footer>

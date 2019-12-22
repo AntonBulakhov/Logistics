@@ -33,6 +33,7 @@ public class OrderToNewOrPaidOrderConverter implements Converter<OrderEntity, Ne
         newOrPaidOrder.setValue(orderEntity.getValue());
         newOrPaidOrder.setWeight(orderEntity.getWeight());
         newOrPaidOrder.setUser(userConverter.convert(orderEntity.getUser()));
+        newOrPaidOrder.setOrderType(orderEntity.getOrderType());
         return newOrPaidOrder;
     }
 

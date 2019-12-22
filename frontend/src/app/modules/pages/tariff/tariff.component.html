@@ -1,77 +1,39 @@
 <app-navigation></app-navigation>
 <form class="form-margin-top-bottom">
-<div class="container-fluid mt-3" [ngSwitch]="transportTypeId">
-  <h4 *ngSwitchCase="'1'">Транспортные тарифы кораблей</h4>
-  <h4 *ngSwitchCase="'2'">Транспортные тарифы автомобилей</h4>
-  <h4 *ngSwitchCase="'3'">Транспортные тарифы самолетов</h4>
-</div>
-<table class="table table-hover mt-3 mb-5">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Название</th>
-    <th scope="col">Тип транспорта</th>
-    <th scope="col">Максимальный объем (см3.)</th>
-    <th scope="col">Максимальный вес (кг.)</th>
-    <th scope="col">Скорость (км\ч.)</th>
-    <th scope="col">Цена</th>
-    <th scope="col"></th>
-  </tr>
-  </thead>
-  <tbody>
-
-  <tr *ngIf="auth.user != null && auth.user.role.name == 'carrier'">
-    <th scope="row"></th>
-    <td>
-      <div class="form-group">
-        <input type="text" class="form-control" id="tariff" autocomplete="off" name="tariff" [(ngModel)]="newTransport.name">
-      </div>
-    </td>
-    <td>
-      <div class="form-group">
-        <select id="inputVihicletype" class="form-control" [(ngModel)]="newTransport.transportType" name="transport">
-          <option *ngFor="let type of transportTypes" [ngValue]="type">{{type.name}}</option>
-        </select>
-      </div>
-    </td>
-    <td>
-      <div class="form-group">
-        <input type="text" class="form-control" id="maxvalue" autocomplete="off" name="tariff" [(ngModel)]="newTransport.maxValue">
-      </div>
-    </td>
-    <td>
-      <div class="form-group">
-        <input type="text" class="form-control" id="maxweight" autocomplete="off" name="tariff" [(ngModel)]="newTransport.maxWeight">
-      </div>
-    </td>
-    <td>
-      <div class="form-group">
-        <input type="text" class="form-control" id="speed" autocomplete="off" name="tariff" [(ngModel)]="newTransport.speed">
-      </div>
-    </td>
-    <td>
-      <input type="text" class="form-control" id="costperhour" autocomplete="off" name="tariff" [(ngModel)]="newTransport.costPerHour">
-    </td>
-    <td>
-      <button class="btn btn-main" (click)="createTransport()">Создать</button>
-    </td>
-  </tr>
-
-  <tr *ngFor="let transport of transports, let i = index">
-    <th scope="row">{{i + 1}}</th>
-    <td>{{transport.name}}</td>
-    <td [ngSwitch]="transport.transportType.name">
-      <p *ngSwitchCase="'car'">Машина</p>
-      <p *ngSwitchCase="'ship'">Корабль</p>
-      <p *ngSwitchCase="'airplane'">Самолет</p>
-    </td>
-    <td>{{transport.maxValue}} см3.</td>
-    <td>{{transport.maxWeight}} кг.</td>
-    <td>{{transport.speed}} км\ч.</td>
-    <td>{{transport.costPerHour}} $</td>
-    <td></td>
-  </tr>
-  </tbody>
-</table>
+  <div class="container-fluid mt-3" [ngSwitch]="transportTypeId">
+    <h4 *ngSwitchCase="'1'">Транспортные тарифы кораблей</h4>
+    <h4 *ngSwitchCase="'2'">Транспортные тарифы автомобилей</h4>
+    <h4 *ngSwitchCase="'3'">Транспортные тарифы самолетов</h4>
+  </div>
+  <table class="table table-hover mt-3 mb-5">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Название</th>
+      <th scope="col">Тип транспорта</th>
+      <th scope="col">Максимальный объем (см3.)</th>
+      <th scope="col">Максимальный вес (кг.)</th>
+      <th scope="col">Скорость (км\ч.)</th>
+      <th scope="col">Цена</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transport of transports, let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{transport.name}}</td>
+      <td [ngSwitch]="transport.transportType.name">
+        <p *ngSwitchCase="'car'">Машина</p>
+        <p *ngSwitchCase="'ship'">Корабль</p>
+        <p *ngSwitchCase="'airplane'">Самолет</p>
+      </td>
+      <td>{{transport.maxValue}} см3.</td>
+      <td>{{transport.maxWeight}} кг.</td>
+      <td>{{transport.speed}} км\ч.</td>
+      <td>{{transport.costPerHour}} $</td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
 </form>
 <app-footer></app-footer>
